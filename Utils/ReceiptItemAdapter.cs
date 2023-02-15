@@ -2,9 +2,9 @@
 using Android.Content;
 using Android.Views;
 using Android.Widget;
-using WebHost.Models;
+using WebHostXam.Models;
 
-namespace WebHostXam.Utils
+namespace WebHostXam.Android.Utils
 {
     public class ReceiptItemAdapter : BaseAdapter<string>
     {

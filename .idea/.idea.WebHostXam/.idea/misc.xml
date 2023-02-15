@@ -3,19 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/AndroidProjects/WebHostXam/Resources/drawable/left_border.axml" value="0.2805" />
-        <entry key="..\:/AndroidProjects/WebHostXam/Resources/layout/activity_main.axml" value="0.16" />
-        <entry key="..\:/AndroidProjects/WebHostXam/Resources/layout/fds.axml" value="0.24010416666666667" />
-        <entry key="..\:/AndroidProjects/WebHostXam/Resources/layout/left_border.axml" value="0.20927467300832342" />
-        <entry key="..\:/AndroidProjects/WebHostXam/Resources/layout/receipt_item.axml" value="0.11" />
+        <entry key="..\:/AndroidProjects/xamar_server/WebHostXam/Resources/layout/activity_main.axml" value="0.1" />
+        <entry key="..\:/AndroidProjects/xamar_server/WebHostXam/Resources/layout/receipt_item.axml" value="0.22826086956521738" />
       </map>
-    </option>
-  </component>
-  <component name="VisualizationToolProject">
-    <option name="state">
-      <ProjectState>
-        <option name="scale" value="0.1" />
-      </ProjectState>
     </option>
   </component>
   <component name="com.jetbrains.rider.android.RiderAndroidMiscFileCreationComponent">

@@ -3,14 +3,13 @@ using System.Collections.Generic;
 using Android.App;
 using Android.OS;
 using Android.Support.V7.App;
-using Android.Runtime;
 using Android.Views.Animations;
 using Android.Widget;
-using WebHost;
-using WebHost.Models;
-using WebHostXam.Utils;
+using WebHostXam.Android.Utils;
+using WebHostXam.Models;
 
-namespace WebHostXam
+
+namespace WebHostXam.Android
 {
     [Activity(Label = "@string/app_name", Theme = "@style/AppTheme", MainLauncher = true)]
     public class MainActivity : AppCompatActivity //, global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
@@ -42,7 +41,7 @@ namespace WebHostXam
             TextView textReceiptItemAmount = FindViewById<TextView>(Resource.Id.receipt_amount);
             textReceiptItemAmount.Text = "Amount: " + amount;
             
-            // var host = new App();
+            var host = new App();
              
              // string ip = App.WebHostParameters.ServerIpEndpoint.Address.ToString();
              // string url = $"http://{ip}:{App.WebHostParameters.ServerIpEndpoint.Port}";
