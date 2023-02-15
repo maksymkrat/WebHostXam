@@ -73,30 +73,20 @@
         android:id="@+id/button1"
         android:layout_width="match_parent"
         android:layout_height="70dp"
-        android:layout_marginTop="700dp"
+        android:layout_marginTop="650dp"
         android:background="@android:color/white"
         android:gravity="center"
         android:text="show/hide"
         android:textAlignment="center"
         android:textSize="50dp"
         android:textStyle="bold"></Button>
-
-    <TextView
-        android:id="@+id/ip_text"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:gravity="center"
-        android:layout_marginTop="800dp"
-        android:text="id"
-        android:textSize="30dp"
-        android:textStyle="bold">
-    </TextView>
+    
     <TextView
         android:id="@+id/url_text"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:gravity="center"
-        android:layout_marginTop="850dp"
+        android:layout_marginTop="600dp"
         android:text="url"
         android:textSize="30dp"
         android:textStyle="bold">

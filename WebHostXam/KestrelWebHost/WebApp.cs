@@ -13,7 +13,7 @@ namespace WebHostXam.KestrelWebHost
     public class WebApp
     {
         
-        private readonly IReceiptManager _receiptManager;
+        private readonly ReceiptManager _receiptManager;
         
         private const string StartReceipt = "/StartReceipt";
         private const string AddItemToReceipt = "/AddItemToReceipt";
@@ -36,7 +36,7 @@ namespace WebHostXam.KestrelWebHost
 
         public WebApp()
         {
-            _receiptManager = new ReceiptManager();
+            _receiptManager = ReceiptManager.GetInstance();
             
             //Create Receipt
             var item1 = new ReceiptItemModel();

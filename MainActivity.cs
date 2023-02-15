@@ -6,6 +6,7 @@ using Android.Support.V7.App;
 using Android.Views.Animations;
 using Android.Widget;
 using WebHostXam.Android.Utils;
+using WebHostXam.Managers;
 using WebHostXam.Models;
 
 
@@ -20,10 +21,19 @@ namespace WebHostXam.Android
        public float amount;
 
         private List<ReceiptItemModel> items;
+
+        public ReceiptManager receiptManager;
         
+        
+        
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
+            
+            var host = new App();
+            receiptManager = ReceiptManager.GetInstance();
+
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.activity_main);
 
@@ -41,14 +51,12 @@ namespace WebHostXam.Android
             TextView textReceiptItemAmount = FindViewById<TextView>(Resource.Id.receipt_amount);
             textReceiptItemAmount.Text = "Amount: " + amount;
             
-            var host = new App();
-             
-             // string ip = App.WebHostParameters.ServerIpEndpoint.Address.ToString();
-             // string url = $"http://{ip}:{App.WebHostParameters.ServerIpEndpoint.Port}";
-             // TextView ipText = FindViewById<TextView>(Resource.Id.ip_text);
-             // TextView urlText = FindViewById<TextView>(Resource.Id.url_text);
-             // ipText.Text = ip;
-             // urlText.Text = url;
+           
+            
+              string ip = App.WebHostParameters.ServerIpEndpoint.Address.ToString();
+              string url = $"http://{ip}:{App.WebHostParameters.ServerIpEndpoint.Port}";
+              TextView urlText = FindViewById<TextView>(Resource.Id.url_text);
+              urlText.Text = url;
 
         }
 
@@ -61,9 +69,25 @@ namespace WebHostXam.Android
                  .SetInterpolator(new OvershootInterpolator(0.5f))!
                  .Start();
              onShowReceiptWindow = !onShowReceiptWindow;
+        }
 
+        public void HideReceiptWindow(bool hide)
+        {
+            
+            
+            RunOnUiThread((() =>
+            {
+                receiptLayout = FindViewById<LinearLayout>(Resource.Id.receipt_window);
+                receiptLayout.Animate()!
+                    .TranslationY(-600)
+                    .SetInterpolator(new OvershootInterpolator(0.5f))!
+                    .Start();
+            }));
+            onShowReceiptWindow = true;
 
         }
+
+        
         
         public void CalculateReceiptAmount(List<ReceiptItemModel> items, float discount)
         {
@@ -109,6 +133,8 @@ namespace WebHostXam.Android
             items.Add(item2);
             items.Add(item3);
             items.Add(item4);
+            
+            receiptManager.HideReceiptWindow += x => HideReceiptWindow(x);
 
         }
         

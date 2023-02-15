@@ -28,7 +28,7 @@ namespace WebHostXam.KestrelWebHost
                 .ConfigureServices((hostContext, services) =>
                 {
                     services.AddSingleton<IHostLifetime, ConsoleLifetimePatch>();
-                    services.AddSingleton<IReceiptManager, ReceiptManager>();
+                   // services.AddSingleton<IReceiptManager, ReceiptManager>();
                 })
                 .UseKestrel(options =>
                 {

@@ -8,3 +8,13 @@ D:\AndroidProjects\xamar_server\WebHostXam\WebHostXam\obj\Debug\netstandard2.0\W
 D:\AndroidProjects\xamar_server\WebHostXam\WebHostXam\obj\Debug\netstandard2.0\WebHostXam.csproj.CoreCompileInputs.cache
 D:\AndroidProjects\xamar_server\WebHostXam\WebHostXam\obj\Debug\netstandard2.0\WebHostXam.dll
 D:\AndroidProjects\xamar_server\WebHostXam\WebHostXam\obj\Debug\netstandard2.0\WebHostXam.pdb
+D:\AndroidProjects\WebHostXam\WebHostXam\bin\Debug\netstandard2.0\WebHostXam.deps.json
+D:\AndroidProjects\WebHostXam\WebHostXam\bin\Debug\netstandard2.0\WebHostXam.dll
+D:\AndroidProjects\WebHostXam\WebHostXam\bin\Debug\netstandard2.0\WebHostXam.pdb
+D:\AndroidProjects\WebHostXam\WebHostXam\obj\Debug\netstandard2.0\WebHostXam.csproj.AssemblyReference.cache
+D:\AndroidProjects\WebHostXam\WebHostXam\obj\Debug\netstandard2.0\WebHostXam.GeneratedMSBuildEditorConfig.editorconfig
+D:\AndroidProjects\WebHostXam\WebHostXam\obj\Debug\netstandard2.0\WebHostXam.AssemblyInfoInputs.cache
+D:\AndroidProjects\WebHostXam\WebHostXam\obj\Debug\netstandard2.0\WebHostXam.AssemblyInfo.cs
+D:\AndroidProjects\WebHostXam\WebHostXam\obj\Debug\netstandard2.0\WebHostXam.csproj.CoreCompileInputs.cache
+D:\AndroidProjects\WebHostXam\WebHostXam\obj\Debug\netstandard2.0\WebHostXam.dll
+D:\AndroidProjects\WebHostXam\WebHostXam\obj\Debug\netstandard2.0\WebHostXam.pdb
