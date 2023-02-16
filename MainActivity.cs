@@ -18,7 +18,7 @@ namespace WebHostXam.Android
        public bool onShowReceiptWindow = false;
        public LinearLayout receiptLayout;
        public  ListView receiptItems;
-       public float amount;
+       public float amount = 1224.41f;
 
         private List<ReceiptItemModel> items;
 
@@ -46,8 +46,7 @@ namespace WebHostXam.Android
             
             ReceiptItemAdapter adapter = new ReceiptItemAdapter(this, items);
             receiptItems.Adapter = adapter;
-            CalculateReceiptAmount(items, 0.03f);
-            
+
             TextView textReceiptItemAmount = FindViewById<TextView>(Resource.Id.receipt_amount);
             textReceiptItemAmount.Text = "Amount: " + amount;
             
@@ -71,38 +70,34 @@ namespace WebHostXam.Android
              onShowReceiptWindow = !onShowReceiptWindow;
         }
 
-        public void HideReceiptWindow(bool hide)
+        public void HideReceiptWindow()
         {
-            
-            
-            RunOnUiThread((() =>
-            {
-                receiptLayout = FindViewById<LinearLayout>(Resource.Id.receipt_window);
-                receiptLayout.Animate()!
-                    .TranslationY(-600)
-                    .SetInterpolator(new OvershootInterpolator(0.5f))!
-                    .Start();
-            }));
+            ShowReceiptWindow(false);
             onShowReceiptWindow = true;
 
         }
 
-        
-        
-        public void CalculateReceiptAmount(List<ReceiptItemModel> items, float discount)
+        public void ShowReceiptWindow(bool show)
         {
-            foreach (var item in items)
+            RunOnUiThread((() =>
             {
-                amount += item.Price;
-            }
-
-            if (discount != 1)
-            {
-                var discountValue = amount * discount;
-                amount = amount - (float) Math.Round((Decimal) discountValue, 2, MidpointRounding.AwayFromZero);
-            }
-               
+                receiptLayout = FindViewById<LinearLayout>(Resource.Id.receipt_window);
+                receiptLayout.Animate()!
+                    .TranslationY(show ? 0 : -600)
+                    .SetInterpolator(new OvershootInterpolator(0.5f))!
+                    .Start();
+            }));
         }
+
+        public void StartReceipt(ReceiptModel receipt)
+        {
+            ShowReceiptWindow(true);
+            onShowReceiptWindow = false;
+        }
+
+        
+        
+        
 
         public void Initialize()
         {
@@ -134,7 +129,8 @@ namespace WebHostXam.Android
             items.Add(item3);
             items.Add(item4);
             
-            receiptManager.HideReceiptWindow += x => HideReceiptWindow(x);
+            receiptManager.ActionFinishReceipt += HideReceiptWindow;
+            receiptManager.ActionStartReceipt += model => StartReceipt(model);
 
         }
         

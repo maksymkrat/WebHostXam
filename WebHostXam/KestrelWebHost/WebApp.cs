@@ -56,7 +56,8 @@ namespace WebHostXam.KestrelWebHost
             receipt.products.Add(item1);
             receipt.products.Add(item2);
             receipt.DateTime = DateTime.Now;
-            receipt.Suma = 115;
+            receipt.Discount = 3;
+            receipt.Amount = 115;
             _receipt = receipt;
             
             var newItem = new ReceiptItemModel();
@@ -115,8 +116,7 @@ namespace WebHostXam.KestrelWebHost
                     _receiptManager.RemoveItemInReceipt(value2);
                     break;
                 case FinishReceipt:
-                    var value3 = true;
-                    _receiptManager.FinishReceipt(value3);
+                    _receiptManager.FinishReceipt();
                     break;
                 
             }

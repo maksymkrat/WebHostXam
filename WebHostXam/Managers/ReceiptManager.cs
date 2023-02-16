@@ -1,11 +1,17 @@
 ﻿using System;
+using System.Collections.Generic;
 using WebHostXam.Models;
 
 namespace WebHostXam.Managers
 {
-    public sealed class ReceiptManager //: IReceiptManager
+    public sealed class ReceiptManager 
     {
-        public Action<bool> HideReceiptWindow { get; set; }
+        public Action<ReceiptItemModel> ActionAddItemToReceipt { get; set; } // ?
+        public Action<int> ActionRemoveItemInReceipt { get; set; } // ?
+        public Action<float> ActionAddDiscount { get; set; } // ?
+        public Action<ReceiptModel> ActionStartReceipt { get; set; }
+        public Action ActionFinishReceipt { get; set; }
+        
         private static ReceiptManager _receiptManager;
         private ReceiptManager()
         {
@@ -26,6 +32,7 @@ namespace WebHostXam.Managers
 
         public void StartReceipt(ReceiptModel model)
         {
+            ActionStartReceipt.Invoke(model);
         }
 
         public void AddItemToReceipt(ReceiptItemModel item)
@@ -36,9 +43,26 @@ namespace WebHostXam.Managers
         {
         }
 
-        public void FinishReceipt(bool finish)
+        public void FinishReceipt()
         {
-            HideReceiptWindow.Invoke(finish);
+            ActionFinishReceipt.Invoke();
+        }
+        
+        
+        public void CalculateReceiptAmount(List<ReceiptItemModel> items, float discount)
+        {
+            float amount = 0;
+            foreach (var item in items)
+            {
+                amount += item.Price;
+            }
+
+            if (discount != 1)
+            {
+                var discountValue = amount * discount;
+                amount = amount - (float) Math.Round((Decimal) discountValue, 2, MidpointRounding.AwayFromZero);
+            }
+               
         }
     }
 }
