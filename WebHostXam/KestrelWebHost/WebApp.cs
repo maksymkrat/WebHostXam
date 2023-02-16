@@ -1,6 +1,7 @@
 ﻿
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
@@ -52,10 +53,9 @@ namespace WebHostXam.KestrelWebHost
             item2.Price = 40;
         
             var receipt = new ReceiptModel();
-            receipt.products = new List<ReceiptItemModel>();
-            receipt.products.Add(item1);
-            receipt.products.Add(item2);
-            receipt.DateTime = DateTime.Now;
+            receipt.items = new List<ReceiptItemModel>();
+            receipt.items.Add(item1);
+            receipt.items.Add(item2);
             receipt.Discount = 3;
             receipt.Amount = 115;
             _receipt = receipt;
@@ -98,14 +98,15 @@ namespace WebHostXam.KestrelWebHost
         
         
 
-        public   void RecognizeMethod(HttpContext context)
+        public  void RecognizeMethod(HttpContext context)
         {
         
             switch (context.Request.Path)
             {
                 case StartReceipt:
-                    var value = _receipt;
-                    _receiptManager.StartReceipt(value);
+                    var strData = ReadBodyFromRequest(context);
+                    var newReceipt = _receiptManager.DeserializeReceiptData(strData);
+                    _receiptManager.StartReceipt(newReceipt); //hardcode
                     break;
                 case AddItemToReceipt:
                     var value1 = _newItem;
@@ -122,10 +123,18 @@ namespace WebHostXam.KestrelWebHost
             }
             
         }
-        
-        public static object DeserializeBody(HttpContext context)
+
+
+        public string ReadBodyFromRequest(HttpContext context)
         {
-            return new object(); // TODO
+            var str = "";
+            using (StreamReader reader = new StreamReader(context.Request.Body))
+            {
+                str = reader.ReadToEnd();
+            }
+
+            return str;
         }
+        
     }
 }

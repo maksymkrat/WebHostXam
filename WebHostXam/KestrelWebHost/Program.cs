@@ -22,7 +22,7 @@ namespace WebHostXam.KestrelWebHost
                         new EmbeddedResourceConfigurationOptions
                         {
                             Assembly = Assembly.GetExecutingAssembly(),
-                            Prefix = "DemoApp.WebHost"
+                            Prefix = "WebHostXam"
                         });
                 })
                 .ConfigureServices((hostContext, services) =>

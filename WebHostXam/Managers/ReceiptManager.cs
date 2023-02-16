@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 using WebHostXam.Models;
 
 namespace WebHostXam.Managers
@@ -46,6 +47,11 @@ namespace WebHostXam.Managers
         public void FinishReceipt()
         {
             ActionFinishReceipt.Invoke();
+        }
+
+        public ReceiptModel DeserializeReceiptData(string data)
+        {
+            return JsonConvert.DeserializeObject<ReceiptModel>(data);
         }
         
         

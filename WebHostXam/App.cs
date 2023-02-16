@@ -13,7 +13,7 @@ namespace WebHostXam
 
         public App()
         {
-            WebHostParameters.ServerIpEndpoint = new IPEndPoint(NetworkHelper.GetIpAddress(), 5000);
+            WebHostParameters.ServerIpEndpoint = new IPEndPoint(NetworkHelper.GetIpAddress(), 3555);
         
 
             new Thread(async () =>
