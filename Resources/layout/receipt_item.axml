@@ -14,6 +14,7 @@
             android:id="@+id/receipt_item_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@android:color/black"
             android:gravity="right"
             android:paddingRight="30dp"
             android:text="Analgin"
@@ -27,6 +28,7 @@
             android:gravity="right"
             android:paddingLeft="100dp"
             android:paddingRight="30dp"
+            android:textColor="#262626"
             android:text="this is some text for description descri ptiondescri ptionde scription"
             android:textSize="15dp">
 
@@ -41,6 +43,7 @@
         android:layout_weight="1"
         android:gravity="center"
         android:text="11115.95"
+        android:textColor="@android:color/black"
         android:textSize="35dp"
         android:textStyle="bold">
 

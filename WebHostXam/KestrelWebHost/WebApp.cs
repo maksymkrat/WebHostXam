@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
@@ -13,19 +12,17 @@ namespace WebHostXam.KestrelWebHost
 {
     public class WebApp
     {
-        
         private readonly ReceiptManager _receiptManager;
-        
-        private const string StartReceipt = "/StartReceipt";
-        private const string AddItemToReceipt = "/AddItemToReceipt";
-        private const string RemoveItemInReceipt = "/RemoveItemInReceipt";
+
+        private const string SendReceipt = "/SendReceipt";
         private const string FinishReceipt = "/FinishReceipt";
-        
-        
-        private static readonly byte[] _helloWorldBytes = Encoding.UTF8.GetBytes(
-            "Hello from  server");
-        
+
+
+        private static byte[] _serverStatus = Encoding.UTF8.GetBytes(
+            "server run");
+
         private static WebApp instance = new WebApp();
+
         private static WebApp Instance
         {
             get { return instance; }
@@ -33,108 +30,76 @@ namespace WebHostXam.KestrelWebHost
 
         private ReceiptModel _receipt;
         private ReceiptItemModel _newItem;
-        
+
 
         public WebApp()
         {
             _receiptManager = ReceiptManager.GetInstance();
-            
-            //Create Receipt
-            var item1 = new ReceiptItemModel();
-            item1.Name = "Ssome product1";
-            item1.Description = "Ssome description1";
-            item1.Id = 11;
-            item1.Price = 25;
-        
-            var item2 = new ReceiptItemModel();
-            item2.Name = "Ssome product2";
-            item2.Description = "Ssome description2";
-            item2.Id = 22;
-            item2.Price = 40;
-        
-            var receipt = new ReceiptModel();
-            receipt.items = new List<ReceiptItemModel>();
-            receipt.items.Add(item1);
-            receipt.items.Add(item2);
-            receipt.Discount = 3;
-            receipt.Amount = 115;
-            _receipt = receipt;
-            
-            var newItem = new ReceiptItemModel();
-            newItem.Name = "Ssome newItem product3";
-            newItem.Description = "Ssome description3";
-
-            newItem.Id = 33;
-            newItem.Price = 5;
-            
-            _newItem = newItem;
-
         }
 
-     
 
         public static Task OnHttpRequest(HttpContext httpContext)
         {
-            
+            var response = httpContext.Response;
+
             try
             {
                 Instance.RecognizeMethod(httpContext);
-                
+                response.StatusCode = 200;
+                _serverStatus = Encoding.UTF8.GetBytes("server runing");
             }
             catch (Exception e)
             {
-                Console.WriteLine(e);
+                response.StatusCode = 400;
+                _serverStatus = Encoding.UTF8.GetBytes(
+                    e.ToString());
+            }
+
+
+            response.ContentType = "text/plain";
+            response.ContentLength = _serverStatus.Length;
+            return response.Body.WriteAsync(_serverStatus, 0, _serverStatus.Length);
+        }
+
+
+        public void RecognizeMethod(HttpContext context)
+        {
+            try
+            {
+                switch (context.Request.Path)
+                {
+                    case SendReceipt:
+                        var strData = ReadBodyFromRequest(context);
+                        var newReceipt = _receiptManager.DeserializeReceiptData(strData);
+                        _receiptManager.SendReceipt(newReceipt);
+                        break;
+                    case FinishReceipt:
+                        _receiptManager.FinishReceipt();
+                        break;
+                }
+            }
+            catch (Exception e)
+            {
                 throw;
             }
-            
-            var response = httpContext.Response;
-            response.StatusCode = 200;
-            response.ContentType = "text/plain";
-            
-            var helloWorld = _helloWorldBytes;
-            response.ContentLength = helloWorld.Length;
-             return response.Body.WriteAsync(helloWorld, 0, helloWorld.Length);
-        }
-        
-        
-
-        public  void RecognizeMethod(HttpContext context)
-        {
-        
-            switch (context.Request.Path)
-            {
-                case StartReceipt:
-                    var strData = ReadBodyFromRequest(context);
-                    var newReceipt = _receiptManager.DeserializeReceiptData(strData);
-                    _receiptManager.StartReceipt(newReceipt); //hardcode
-                    break;
-                case AddItemToReceipt:
-                    var value1 = _newItem;
-                    _receiptManager.AddItemToReceipt(value1);
-                    break;
-                case RemoveItemInReceipt:
-                    var value2 = 33;
-                    _receiptManager.RemoveItemInReceipt(value2);
-                    break;
-                case FinishReceipt:
-                    _receiptManager.FinishReceipt();
-                    break;
-                
-            }
-            
         }
 
 
         public string ReadBodyFromRequest(HttpContext context)
         {
-            var str = "";
-            using (StreamReader reader = new StreamReader(context.Request.Body))
-            {
-                str = reader.ReadToEnd();
-            }
+            
+                var str = "";
+                using (StreamReader reader = new StreamReader(context.Request.Body))
+                {
+                    str = reader.ReadToEnd();
+                    if (String.IsNullOrEmpty(str))
+                    {
+                        throw new Exception("body is empty");
+                    }
+                }
+                return str;
+                
 
-            return str;
         }
-        
     }
 }

@@ -58,6 +58,6 @@ namespace WebHostXam.Android.Utils
         }
         
 
-        public override string this[int position] => items[position].Id.ToString();
+        public override string this[int position] => items[position].Name;
     }
 }

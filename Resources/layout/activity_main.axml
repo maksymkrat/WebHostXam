@@ -35,7 +35,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
                 android:gravity="center"
-                android:text="Discount by card: 3%"
+                android:textColor="@android:color/black"
+                android:text="Знижка по карті: 0%"
                 android:textSize="35dp"
                 android:textStyle="bold">
 
@@ -46,7 +47,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
                 android:gravity="center"
-                android:text="Amount: 13555.58"
+                android:textColor="@android:color/black"
+                android:text="Сума: 0"
                 android:textSize="45dp"
                 android:textStyle="bold">
 
