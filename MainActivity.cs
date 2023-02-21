@@ -8,6 +8,8 @@ using Android.Widget;
 using WebHostXam.Android.Utils;
 using WebHostXam.Managers;
 using WebHostXam.Models;
+using Android.Net;
+using Uri = Android.Net.Uri;
 
 
 namespace WebHostXam.Android
@@ -17,12 +19,12 @@ namespace WebHostXam.Android
     {
        public bool onShowReceiptWindow = true; // need delete
 
-       public LinearLayout receiptLayout;
-       public ListView viewReceiptItems;
-       public TextView textDiscount;
-       public TextView textReceiptAmount;
-       public ReceiptManager receiptManager;
-       public ReceiptItemAdapter adapter;
+        LinearLayout receiptLayout;
+        ListView viewReceiptItems;
+        TextView textDiscount;
+        TextView textReceiptAmount;
+        ReceiptManager receiptManager;
+        ReceiptItemAdapter adapter;
        
         
 
@@ -55,6 +57,13 @@ namespace WebHostXam.Android
               TextView urlText = FindViewById<TextView>(Resource.Id.url_text);
               urlText.Text = url;
 
+              VideoView video =  FindViewById<VideoView>(Resource.Id.video);
+              var uri= Uri.Parse("android.resource://" + Application.PackageName + "/" + Resource.Drawable.video2);
+              video.SetVideoURI(uri);
+              ;
+              video.Start();
+
+
         }
 
         public void ShowAndHideWindow(object sender, EventArgs e)
@@ -65,8 +74,8 @@ namespace WebHostXam.Android
 
         public void HideReceiptWindow()
         {
-            ShowReceiptWindow(false);
-            onShowReceiptWindow = true;
+            // ShowReceiptWindow(false);
+            // onShowReceiptWindow = true;
 
         }
 
@@ -84,20 +93,21 @@ namespace WebHostXam.Android
 
         public void StartReceipt(ReceiptModel receipt)
         {
-            if (receipt != null)
-            {
-                RunOnUiThread((() =>
-                { 
-                    adapter = new ReceiptItemAdapter(this, receipt.items);
-                    viewReceiptItems.Adapter = adapter;
-                    textDiscount.Text = $"Знижка по карті: {receipt.Discount}%";
-                    textReceiptAmount.Text = $"Сума: {receipt.Amount}";
-
-                }));
-                ShowReceiptWindow(true);
-                onShowReceiptWindow = false; //need delete
-            }
+            // if (receipt != null)
+            // {
+            //     RunOnUiThread((() =>
+            //     { 
+            //         adapter = new ReceiptItemAdapter(this, receipt.items);
+            //         viewReceiptItems.Adapter = adapter;
+            //         textDiscount.Text = $"Знижка по карті: {receipt.Discount}%";
+            //         textReceiptAmount.Text = $"Сума: {receipt.Amount}";
+            //
+            //     }));
+            //     ShowReceiptWindow(true);
+            //     onShowReceiptWindow = false; //need delete
+            // }
            
+            StartActivity(typeof(ReceiptActivity));
         }
 
         

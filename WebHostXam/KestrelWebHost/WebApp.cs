@@ -14,8 +14,8 @@ namespace WebHostXam.KestrelWebHost
     {
         private readonly ReceiptManager _receiptManager;
 
-        private const string SendReceipt = "/SendReceipt";
-        private const string FinishReceipt = "/FinishReceipt";
+        private const string SendReceipt = "/s"; //"/SendReceipt";
+        private const string FinishReceipt = "/f"; // "/FinishReceipt";
 
 
         private static byte[] _serverStatus = Encoding.UTF8.GetBytes(

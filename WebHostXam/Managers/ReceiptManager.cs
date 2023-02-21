@@ -9,6 +9,7 @@ namespace WebHostXam.Managers
     {
         public Action<ReceiptModel> ActionStartReceipt { get; set; }
         public Action ActionFinishReceipt { get; set; }
+        public ReceiptModel ReceiptModel { get; set; }
         
         private static ReceiptManager _receiptManager;
         private ReceiptManager()
@@ -28,6 +29,7 @@ namespace WebHostXam.Managers
 
         public void SendReceipt(ReceiptModel model)
         {
+            ReceiptModel = model;
             ActionStartReceipt.Invoke(model);
         }
         public void FinishReceipt()
