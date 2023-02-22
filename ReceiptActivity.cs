@@ -10,8 +10,8 @@ using WebHostXam.Managers;
 
 namespace WebHostXam.Android
 {
-    [Activity (NoHistory = true, Theme = "@style/Theme.Transparent" )]
-    //[Activity (NoHistory = true )]
+   /// [Activity (NoHistory = true, Theme = "@style/Theme.Transparent" )]
+    [Activity (NoHistory = true )]
     public class ReceiptActivity : Activity
     {
         
@@ -21,6 +21,8 @@ namespace WebHostXam.Android
         TextView textReceiptAmount;
         ReceiptManager receiptManager;
         ReceiptItemAdapter adapter;
+
+        private LinearLayout _layout;
         
         
         protected override void OnCreate(Bundle savedInstanceState)
@@ -31,14 +33,15 @@ namespace WebHostXam.Android
 
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.activity_receipt);
-            
+            _layout = FindViewById<LinearLayout>(Resource.Id.id_receipt_activity);
+            _layout.SetGravity(GravityFlags.Top);
             
             receiptLayout = FindViewById<LinearLayout>(Resource.Id.id_receipt_window);
+            receiptLayout.SetGravity(GravityFlags.Top);
             viewReceiptItems = FindViewById<ListView>(Resource.Id.id_list_items);
             textDiscount = FindViewById<TextView>(Resource.Id.id_discount);
             textReceiptAmount = FindViewById<TextView>(Resource.Id.id_receipt_amount);
-           
-            
+
             // //need delete
             // Button button = FindViewById<Button>(Resource.Id.id_button);
             // button.Click += HideActivity;

@@ -12,7 +12,8 @@
         android:background="@android:color/white"
         android:orientation="horizontal"
         android:padding="50dp"
-        android:translationY="-600dp">
+        android:translationY="0dp"
+        >
 
         <LinearLayout
             android:layout_width="0dp"
@@ -23,16 +24,15 @@
             <ListView
                 android:id="@+id/list_items"
                 android:layout_width="match_parent"
-                android:layout_height="300dp">
-            </ListView>
+                android:layout_height="300dp"></ListView>
 
             <TextView
                 android:id="@+id/discount"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
                 android:gravity="center"
-                android:textColor="@android:color/black"
                 android:text="Знижка по карті: 0%"
+                android:textColor="@android:color/black"
                 android:textSize="35dp"
                 android:textStyle="bold">
 
@@ -43,8 +43,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
                 android:gravity="center"
-                android:textColor="@android:color/black"
                 android:text="Сума: 0"
+                android:textColor="@android:color/black"
                 android:textSize="45dp"
                 android:textStyle="bold">
 
@@ -52,11 +52,11 @@
 
 
         </LinearLayout>
+
         <View
             android:layout_width="3dp"
             android:layout_height="match_parent"
-            android:background="@android:color/black">
-        </View>
+            android:background="@android:color/black"></View>
 
         <LinearLayout
             android:layout_width="0dp"
@@ -67,11 +67,19 @@
         </LinearLayout>
     </LinearLayout>
 
+    <VideoView
+        android:id="@+id/video"
+        android:layout_width="match_parent"
+        android:layout_height="600dp"
+        android:layout_marginTop="200dp">
+
+    </VideoView>
+
     <Button
         android:id="@+id/button1"
         android:layout_width="match_parent"
         android:layout_height="70dp"
-        android:layout_marginTop="650dp"
+        android:layout_marginTop="850dp"
         android:background="@android:color/white"
         android:gravity="center"
         android:text="show/hide"
@@ -79,21 +87,13 @@
         android:textSize="50dp"
         android:textStyle="bold"></Button>
 
-    <VideoView
-        android:id="@+id/video"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="800dp">
-
-    </VideoView>
-
 
     <TextView
         android:id="@+id/url_text"
         android:layout_width="match_parent"
         android:layout_height="50dp"
+        android:layout_marginTop="800dp"
         android:gravity="center"
-        android:layout_marginTop="600dp"
         android:text="url"
         android:textSize="30dp"
         android:textStyle="bold">

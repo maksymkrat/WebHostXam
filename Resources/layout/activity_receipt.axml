@@ -1,18 +1,29 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/id_receipt_activity"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:theme="@style/Theme.Transparent">
+    android:layout_gravity="top"
+    android:gravity="top"
+    android:layout_marginTop="0dp"
+    android:paddingTop="0dp"
+    >
+    <!--    android:theme="@style/Theme.Transparent"-->
 
     <LinearLayout
+        
         android:id="@+id/id_receipt_window"
         android:layout_width="match_parent"
         android:layout_height="600dp"
         android:background="@android:color/white"
         android:orientation="horizontal"
         android:padding="50dp"
-        android:translationY="0dp">
+        android:translationY="0dp"
+        android:layout_gravity="top"
+        android:gravity="top"
+        >
 
         <LinearLayout
             android:layout_width="0dp"

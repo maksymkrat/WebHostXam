@@ -34,6 +34,8 @@ namespace WebHostXam.Android.Utils
             {
                 view = LayoutInflater.From(_context).Inflate(Resource.Layout.receipt_item, null, false);
                 
+                
+                
                 TextView textReceiptItemName = view.FindViewById<TextView>(Resource.Id.receipt_item_name);
                 textReceiptItemName.Text = items[position].Name;
                 
