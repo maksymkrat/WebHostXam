@@ -29,14 +29,24 @@ namespace WebHostXam.Android
         TextView textDiscount;
         TextView textReceiptAmount;
         ReceiptManager receiptManager;
-        ReceiptItemAdapter adapter ;
+        ReceiptItemAdapter adapter;
 
-        private Dialog popupDialog = null;
+        private Dialog receiptWindow = null;
 
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
+            
+            // View decorView = Window.DecorView;
+            //
+            // decorView.SystemUiVisibility = (StatusBarVisibility) (SystemUiFlags.LayoutStable
+            //                                                       | SystemUiFlags.HideNavigation
+            //                                                       | SystemUiFlags.LayoutFullscreen
+            //                                                        | SystemUiFlags.LayoutHideNavigation
+            //                                                       | SystemUiFlags.Fullscreen
+            //                                                       | SystemUiFlags.LowProfile
+            //                                                       | SystemUiFlags.Immersive);
 
 
             var host = new App();
@@ -44,7 +54,6 @@ namespace WebHostXam.Android
 
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.activity_main);
-            
 
 
             //need delete
@@ -55,10 +64,10 @@ namespace WebHostXam.Android
 
 
             //need delete
-            string ip = App.WebHostParameters.ServerIpEndpoint.Address.ToString();
-            string url = $"http://{ip}:{App.WebHostParameters.ServerIpEndpoint.Port}";
-            TextView urlText = FindViewById<TextView>(Resource.Id.url_text);
-            urlText.Text = url;
+            // string ip = App.WebHostParameters.ServerIpEndpoint.Address.ToString();
+            // string url = $"http://{ip}:{App.WebHostParameters.ServerIpEndpoint.Port}";
+            // TextView urlText = FindViewById<TextView>(Resource.Id.url_text);
+            // urlText.Text = url;
 
             VideoView video = FindViewById<VideoView>(Resource.Id.video);
             var uri = Uri.Parse("android.resource://" + Application.PackageName + "/" + Resource.Drawable.video2);
@@ -81,9 +90,9 @@ namespace WebHostXam.Android
 
             RunOnUiThread((() =>
                     {
-                        popupDialog.Dismiss();
-                        popupDialog.Hide();
-                        popupDialog = null;
+                        receiptWindow.Dismiss();
+                        receiptWindow.Hide();
+                        receiptWindow = null;
                     }
                 ));
         }
@@ -125,25 +134,32 @@ namespace WebHostXam.Android
             {
                 RunOnUiThread((() =>
                 {
-                    if(popupDialog == null)
-                        popupDialog = new Dialog(this, Resource.Style.Theme_Transparent);
-                    
-                    popupDialog.SetContentView(Resource.Layout.activity_receipt);
+                    if (receiptWindow == null)
+                        receiptWindow = new Dialog(this, Resource.Style.Theme_Transparent);
 
-                    viewReceiptItems = popupDialog.FindViewById<ListView>(Resource.Id.id_list_items);
-                    textDiscount = popupDialog.FindViewById<TextView>(Resource.Id.id_discount);
-                    textReceiptAmount = popupDialog.FindViewById<TextView>(Resource.Id.id_receipt_amount);
+                    receiptWindow.SetContentView(Resource.Layout.activity_receipt);
+
+                    viewReceiptItems = receiptWindow.FindViewById<ListView>(Resource.Id.id_list_items);
+                    textDiscount = receiptWindow.FindViewById<TextView>(Resource.Id.id_discount);
+                    textReceiptAmount = receiptWindow.FindViewById<TextView>(Resource.Id.id_receipt_amount);
 
                     adapter = new ReceiptItemAdapter(this, receipt.items);
                     viewReceiptItems.Adapter = adapter;
                     textDiscount.Text = $"Знижка по карті: {receipt.Discount}%";
                     textReceiptAmount.Text = $"Сума: {receipt.Amount}";
 
-                    popupDialog.Window.SetLayout(ActionBar.LayoutParams.MatchParent,
+                    receiptWindow.Window.SetLayout(ActionBar.LayoutParams.MatchParent,
                         ActionBar.LayoutParams.WrapContent);
-                    popupDialog.Window.SetGravity(GravityFlags.Top);
-                    popupDialog.Window.SetBackgroundDrawable(new ColorDrawable(Color.Transparent));
-                    popupDialog.Show();
+                        receiptWindow.Window.SetGravity(GravityFlags.Top | GravityFlags.Bottom);
+                    receiptWindow.Window.SetBackgroundDrawable(new ColorDrawable(Color.Transparent)); ;
+                    receiptWindow.Window.DecorView.SystemUiVisibility =
+                        (StatusBarVisibility) (SystemUiFlags.HideNavigation 
+                                               | SystemUiFlags.LayoutHideNavigation
+                                                                            | SystemUiFlags.Fullscreen
+                                                                            | SystemUiFlags.LayoutFullscreen
+                            // | SystemUiFlags.ImmersiveSticky
+                        );
+                    receiptWindow.Show();
                 }));
             }
         }

@@ -37,7 +37,7 @@ namespace WebHostXam.Android
             _layout.SetGravity(GravityFlags.Top);
             
             receiptLayout = FindViewById<LinearLayout>(Resource.Id.id_receipt_window);
-            receiptLayout.SetGravity(GravityFlags.Top);
+            // receiptLayout.SetGravity(GravityFlags.FillVertical);
             viewReceiptItems = FindViewById<ListView>(Resource.Id.id_list_items);
             textDiscount = FindViewById<TextView>(Resource.Id.id_discount);
             textReceiptAmount = FindViewById<TextView>(Resource.Id.id_receipt_amount);

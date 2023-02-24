@@ -16,7 +16,7 @@ namespace WebHostXam
 
         public App()
         {
-            WebHostParameters.ServerIpEndpoint = new IPEndPoint(NetworkHelper.GetIpAddress(), 3555);
+            InitServerIp();
             ComparisonIp();
 
             new Thread(async () =>
@@ -32,8 +32,25 @@ namespace WebHostXam
             }).Start();
         }
 
+        public void InitServerIp()
+        {
+            try
+            {
+                WebHostParameters.ServerIpEndpoint = new IPEndPoint(NetworkHelper.GetIpAddress(), 3555);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                
+            }
+        }
+
         public void ComparisonIp()
         {
+            try
+            {
+
+           
             var localIp = Preferences.Get(DEVICE_IP, NONE);
             var currentIp = WebHostParameters.ServerIpEndpoint.Address.ToString();
 
@@ -48,6 +65,12 @@ namespace WebHostXam
                 {
                     // send ip on server
                 }
+            }
+            
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
             }
         }
     }

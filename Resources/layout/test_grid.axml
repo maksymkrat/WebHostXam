@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="600px"
+    android:layout_height="match_parent"
+    android:rowCount="2"
+    >
+    
+   <LinearLayout
+       android:background="@android:color/white"
+       android:layout_rowWeight="1"
+       android:rotation="-90"
+       >
+       <TextView
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"
+           android:text="dfsfsd"
+           android:textSize="70px"
+          >
+           
+           
+       </TextView>
+       
+   </LinearLayout>
+    <LinearLayout
+        android:layout_rowWeight="1"
+        android:background="@android:color/holo_red_light">
+
+    </LinearLayout>
+   
+   
+
+</GridLayout>
