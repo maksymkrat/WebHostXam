@@ -43,7 +43,7 @@ namespace WebHostXam.Android.Utils
                 textReceiptItemDescription.Text = items[position].Description;
                 
                 TextView textReceiptItemPrice = view.FindViewById<TextView>(Resource.Id.price);
-                textReceiptItemPrice.Text = items[position].Price.ToString();
+                textReceiptItemPrice.Text = items[position].Price.ToString("N2");
                 
                
             }

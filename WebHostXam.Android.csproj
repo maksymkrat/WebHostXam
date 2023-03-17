@@ -71,6 +71,7 @@
         <AndroidResource Include="Resources\drawable\cotton.png" />
         <AndroidResource Include="Resources\drawable\lego_ver.jpg" />
         <AndroidResource Include="Resources\drawable\logo_hor.png" />
+        <AndroidResource Include="Resources\drawable\video.mp4" />
         <AndroidResource Include="Resources\drawable\video2.mp4" />
         <AndroidResource Include="Resources\layout\activity_main.axml">
             <SubType>Designer</SubType>

@@ -1,11 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    
     android:layout_width="match_parent"
-    android:layout_height="100px"
-    android:background="@android:color/white">
+    android:layout_height="120px"
+    android:background="@android:color/white"
+    android:paddingTop="10px"
+    android:paddingBottom="10px"
+    android:paddingRight="10px">
 
     <LinearLayout
-        android:layout_width="150px"
+        android:layout_width="220px"
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:orientation="vertical">
@@ -16,8 +20,8 @@
             android:layout_height="wrap_content"
             android:textColor="@android:color/black"
             android:gravity="right"
-            android:paddingRight="30px"
-            android:text="Analgin"
+            android:paddingRight="20px"
+            android:text="Analgin gfdgdf gdfg"
             android:textSize="35px"
             android:textStyle="bold"></TextView>
 
@@ -26,7 +30,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="right"
-            android:paddingLeft="100px"
+            android:paddingLeft="90px"
             android:paddingRight="30px"
             android:textColor="#262626"
             android:text="this is some text for description descri ptiondescri ptionde scription"
@@ -44,7 +48,7 @@
         android:gravity="center"
         android:text="11115.95"
         android:textColor="@android:color/black"
-        android:textSize="35px"
+        android:textSize="32px"
         android:textStyle="bold">
 
     </TextView>

@@ -23,6 +23,8 @@ namespace WebHostXam.Android
         ReceiptItemAdapter adapter;
 
         private LinearLayout _layout;
+
+        private RelativeLayout fullLayer;
         
         
         protected override void OnCreate(Bundle savedInstanceState)
@@ -35,6 +37,7 @@ namespace WebHostXam.Android
             SetContentView(Resource.Layout.activity_receipt);
             _layout = FindViewById<LinearLayout>(Resource.Id.id_receipt_activity);
             _layout.SetGravity(GravityFlags.Top);
+            
             
             receiptLayout = FindViewById<LinearLayout>(Resource.Id.id_receipt_window);
             // receiptLayout.SetGravity(GravityFlags.FillVertical);

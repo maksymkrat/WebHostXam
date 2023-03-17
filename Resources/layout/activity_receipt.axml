@@ -3,20 +3,21 @@
     android:id="@+id/id_receipt_activity"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:clickable="false"
     
     >
 
     <LinearLayout
         android:id="@+id/id_receipt_window"
         android:layout_width="1080px"
-        
-        android:layout_height="600px"
-        android:rotation="-90"
-        android:translationY="-240px"
-        android:translationX="-240px"
+
+        android:layout_height="690px"
         android:layout_alignParentBottom="true"
         android:background="@android:color/white"
-        android:padding="50px">
+        android:padding="50px"
+        android:rotation="-90"
+        android:translationX="-195px"
+        android:translationY="-195px">
 
         <LinearLayout
             android:layout_width="0px"
@@ -27,26 +28,33 @@
             <ListView
                 android:id="@+id/id_list_items"
                 android:layout_width="match_parent"
-                android:layout_height="300px"></ListView>
+                android:layout_height="350px"
+                android:divider="@null"
+                android:dividerHeight="0dp"></ListView>
 
             <TextView
                 android:id="@+id/id_discount"
                 android:layout_width="match_parent"
                 android:layout_height="100px"
-                android:gravity="center"
+                android:layout_marginTop="20px"
+                android:layout_marginRight="160px"
+                android:gravity="right"
+                android:paddingTop="20px"
                 android:text="Знижка по карті: 0%"
                 android:textColor="@android:color/black"
-                android:textSize="35px"
+                android:textSize="30px"
                 android:textStyle="bold"></TextView>
 
             <TextView
                 android:id="@+id/id_receipt_amount"
                 android:layout_width="match_parent"
                 android:layout_height="100px"
-                android:gravity="center"
+                android:layout_marginTop="20px"
+                android:layout_marginRight="160px"
+                android:gravity="right"
                 android:text="Сума: 0"
                 android:textColor="@android:color/black"
-                android:textSize="45px"
+                android:textSize="40px"
                 android:textStyle="bold"></TextView>
         </LinearLayout>
 
@@ -59,22 +67,26 @@
             android:layout_width="0px"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:paddingLeft="30px"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:paddingLeft="30px">
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="32px"
-                android:textStyle="bold"
+                android:text="ДОДАТКОВО ПРОПОНУЄМО"
                 android:textColor="#208F09"
-                android:text="ДОДАТКОВО ПРОПОНУЄМО">
+                android:textSize="32px"
+                android:textStyle="bold">
 
             </TextView>
+
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="230px"
+                android:layout_height="240px"
+                android:layout_marginTop="30px"
                 android:orientation="vertical"
                 android:paddingLeft="20px">
+
                 <TextView
                     android:id="@+id/offer_name_1"
                     android:layout_width="match_parent"
@@ -83,87 +95,90 @@
                     android:text="Вата"
                     android:textColor="@android:color/black"
                     android:textSize="25px"
-                    android:textStyle="bold">
-                    
-                </TextView>
+                    android:textStyle="bold"></TextView>
+
                 <TextView
                     android:id="@+id/offer_descr_1"
                     android:layout_width="match_parent"
                     android:layout_height="20px"
                     android:maxHeight="20px"
                     android:text="оао іоо іва ві щщіщіщоа"
-                    android:textSize="15px"
-                    android:textColor="#262626">
-                </TextView>
+                    android:textColor="#262626"
+                    android:textSize="15px"></TextView>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
+
                     <LinearLayout
                         android:layout_width="0px"
                         android:layout_height="match_parent"
                         android:layout_weight="1">
+
                         <ImageView
                             android:id="@+id/Offer_img_1"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                           
-                            android:src="@drawable/cotton"
-                            >
-                            
+
+                            android:src="@drawable/cotton">
+
                         </ImageView>
-                        
+
                     </LinearLayout>
+
                     <LinearLayout
                         android:layout_width="0px"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:paddingLeft="20px"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        android:paddingLeft="20px">
+
                         <TextView
-                            android:textColor="@android:color/black"
                             android:layout_width="match_parent"
                             android:layout_height="24px"
                             android:maxHeight="24px"
-                            android:textSize="20px"
-                            android:text="СТАРА ЦІНА">
-                        </TextView>
+                            android:text="СТАРА ЦІНА"
+                            android:textColor="@android:color/black"
+                            android:textSize="20px"></TextView>
+
                         <TextView
                             android:id="@+id/offer_old_price_1"
-                            android:textColor="@android:color/black"
                             android:layout_width="match_parent"
                             android:layout_height="60px"
-                            android:textSize="35px"
-                            android:text="123.0">
-                        </TextView>
-                        <TextView
+                            android:text="123.0"
                             android:textColor="@android:color/black"
+                            android:textSize="35px"></TextView>
 
+                        <TextView
                             android:layout_width="match_parent"
+
                             android:layout_height="24px"
                             android:maxHeight="24px"
-                            android:textSize="20px"
-                            android:text="НОВА ЦІНА">
-                        </TextView>
+                            android:text="НОВА ЦІНА"
+                            android:textColor="@android:color/black"
+                            android:textSize="20px"></TextView>
+
                         <TextView
                             android:id="@+id/offer_new_price_1"
-                            android:textColor="@android:color/black"
                             android:layout_width="match_parent"
                             android:layout_height="60px"
-                            android:textSize="35px"
-                            android:text="456.0">
-                        </TextView>
-                        
-                        
+                            android:text="456.0"
+                            android:textColor="@android:color/black"
+                            android:textSize="35px"></TextView>
+
 
                     </LinearLayout>
                 </LinearLayout>
-                
+
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="230px"
+                android:layout_height="240px"
+                android:layout_marginTop="30px"
                 android:orientation="vertical"
                 android:paddingLeft="20px">
+
                 <TextView
                     android:id="@+id/offer_name_2"
                     android:layout_width="match_parent"
@@ -175,80 +190,82 @@
                     android:textStyle="bold">
 
                 </TextView>
+
                 <TextView
                     android:id="@+id/offer_descr_2"
                     android:layout_width="match_parent"
                     android:layout_height="20px"
                     android:maxHeight="20px"
                     android:text="оао іоо іва ві щщіщіщоа"
-                    android:textSize="15px"
-                    android:textColor="#262626">
-                </TextView>
+                    android:textColor="#262626"
+                    android:textSize="15px"></TextView>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
+
                     <LinearLayout
                         android:layout_width="0px"
                         android:layout_height="match_parent"
                         android:layout_weight="1">
+
                         <ImageView
                             android:id="@+id/offer_img_2"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
 
-                            android:src="@drawable/cotton"
-                            >
+                            android:src="@drawable/cotton">
 
                         </ImageView>
 
                     </LinearLayout>
+
                     <LinearLayout
                         android:layout_width="0px"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:paddingLeft="20px"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        android:paddingLeft="20px">
+
                         <TextView
-                            android:textColor="@android:color/black"
                             android:layout_width="match_parent"
                             android:layout_height="24px"
                             android:maxHeight="24px"
-                            android:textSize="20px"
-                            android:text="СТАРА ЦІНА">
-                        </TextView>
+                            android:text="СТАРА ЦІНА"
+                            android:textColor="@android:color/black"
+                            android:textSize="20px"></TextView>
+
                         <TextView
                             android:id="@+id/offer_old_price_2"
-                            android:textColor="@android:color/black"
                             android:layout_width="match_parent"
                             android:layout_height="60px"
-                            android:textSize="35px"
-                            android:text="123.0">
-                        </TextView>
-                        <TextView
+                            android:text="123.0"
                             android:textColor="@android:color/black"
+                            android:textSize="35px"></TextView>
 
+                        <TextView
                             android:layout_width="match_parent"
+
                             android:layout_height="24px"
                             android:maxHeight="24px"
-                            android:textSize="20px"
-                            android:text="НОВА ЦІНА">
-                        </TextView>
+                            android:text="НОВА ЦІНА"
+                            android:textColor="@android:color/black"
+                            android:textSize="20px"></TextView>
+
                         <TextView
                             android:id="@+id/offer_new_price_2"
-                            android:textColor="@android:color/black"
                             android:layout_width="match_parent"
                             android:layout_height="60px"
-                            android:textSize="35px"
-                            android:text="456.0">
-                        </TextView>
+                            android:text="456.0"
+                            android:textColor="@android:color/black"
+                            android:textSize="35px"></TextView>
                     </LinearLayout>
                 </LinearLayout>
 
             </LinearLayout>
-          
 
-            
+
         </LinearLayout>
-        
+
     </LinearLayout>
 </RelativeLayout>

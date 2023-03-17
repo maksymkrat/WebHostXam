@@ -1,8 +1,15 @@
 ﻿using System;
+using System.IO;
 using System.Net;
+using System.Net.Http;
+using System.Net.NetworkInformation;
+using System.Text;
 using System.Threading;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
+using Newtonsoft.Json;
 using WebHostXam.KestrelWebHost;
+using WebHostXam.Models;
 using Xamarin.Essentials;
 
 namespace WebHostXam
@@ -13,6 +20,9 @@ namespace WebHostXam
         public static WebHostParameters WebHostParameters { get; set; } = new WebHostParameters();
         private const String DEVICE_IP = "device_ip";
         private const String NONE = "none";
+        
+        private readonly string ServerURL = "http://172.19.100.133:5555/InsertOrUpdateTabletIp";
+        private readonly   HttpClient _httpClient= new HttpClient();
 
         public App()
         {
@@ -32,7 +42,7 @@ namespace WebHostXam
             }).Start();
         }
 
-        public void InitServerIp()
+        private void InitServerIp()
         {
             try
             {
@@ -41,36 +51,53 @@ namespace WebHostXam
             catch (Exception e)
             {
                 Console.WriteLine(e);
-                
             }
         }
 
-        public void ComparisonIp()
+        private void ComparisonIp()
         {
             try
             {
-
-           
-            var localIp = Preferences.Get(DEVICE_IP, NONE);
-            var currentIp = WebHostParameters.ServerIpEndpoint.Address.ToString();
-
-            if (localIp.Equals(NONE))
-            {
-                Preferences.Set(DEVICE_IP, currentIp);
-                //maybe send also
-            }
-            else
-            {
-                if (!localIp.Equals(currentIp))
+                var localsavedIp = Preferences.Get(DEVICE_IP, NONE);
+                var currentIp = WebHostParameters.ServerIpEndpoint.Address.ToString();
+                
+                if (localsavedIp.Equals(NONE))
                 {
-                    // send ip on server
+                    Preferences.Set(DEVICE_IP, currentIp);
+                    SendIp(currentIp);
+
                 }
-            }
-            
+                else
+                {
+                    if (!localsavedIp.Equals(currentIp))
+                    {
+                        Preferences.Set(DEVICE_IP, currentIp);
+                        SendIp(currentIp);
+                    }
+                }
             }
             catch (Exception e)
             {
                 Console.WriteLine(e);
+            }
+        }
+
+
+        private async Task SendIp(string ip)
+        {
+            try
+            {
+                var mac = "73"; //hardcode
+                var tabletInfo = new TabletInfoModel(ip, mac);
+                var json = JsonConvert.SerializeObject(tabletInfo);
+                var data = new StringContent(json, Encoding.UTF8, "application/json");
+                var response = await _httpClient.PostAsync(ServerURL, data);
+
+            }
+            catch (Exception e)
+            {
+                
+                throw;
             }
         }
     }
