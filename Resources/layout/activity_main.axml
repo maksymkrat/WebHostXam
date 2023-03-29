@@ -6,101 +6,45 @@
     android:layout_alignParentBottom="true"
     >
 
-<!--    <LinearLayout-->
-<!--        android:id="@+id/receipt_window"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="600dp"-->
-<!--        android:background="@android:color/white"-->
-<!--        android:orientation="horizontal"-->
-<!--        android:padding="50dp"-->
-<!--        android:translationY="-600dp">-->
+    <LinearLayout
+        android:id="@+id/receipt_place"
+        android:layout_width="1080px"
+        android:layout_height="708px"
+        android:layout_alignParentBottom="true"
+        android:background="@android:color/white"
+        android:rotation="-90"
+        android:translationX="-186px"
+        android:translationY="-186px">
+        
+        <WebView
+            android:id="@+id/webView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            
+        </WebView>
 
-<!--        <LinearLayout-->
-<!--            android:layout_width="0dp"-->
+<!--        <TextView-->
+<!--            android:layout_width="match_parent"-->
 <!--            android:layout_height="match_parent"-->
-<!--            android:layout_weight="1"-->
-<!--            android:orientation="vertical">-->
+<!--            android:background="@android:color/white"-->
+<!--            android:layout_gravity="center"-->
+<!--            android:gravity="center"-->
+<!--            android:text="Вітаємо"-->
+<!--            android:textColor="@android:color/black"-->
+<!--            android:textSize="120px">-->
+<!--        </TextView>-->
+    </LinearLayout>
 
-<!--            <ListView-->
-<!--                android:id="@+id/list_items"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="300dp"></ListView>-->
-
-<!--            <TextView-->
-<!--                android:id="@+id/discount"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="100dp"-->
-<!--                android:gravity="center"-->
-<!--                android:text="Знижка по карті: 0%"-->
-<!--                android:textColor="@android:color/black"-->
-<!--                android:textSize="35dp"-->
-<!--                android:textStyle="bold">-->
-
-<!--            </TextView>-->
-
-<!--            <TextView-->
-<!--                android:id="@+id/receipt_amount"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="100dp"-->
-<!--                android:gravity="center"-->
-<!--                android:text="Сума: 0"-->
-<!--                android:textColor="@android:color/black"-->
-<!--                android:textSize="45dp"-->
-<!--                android:textStyle="bold">-->
-
-<!--            </TextView>-->
-
-
-<!--        </LinearLayout>-->
-
-<!--        <View-->
-<!--            android:layout_width="3dp"-->
-<!--            android:layout_height="match_parent"-->
-<!--            android:background="@android:color/black"></View>-->
-
-<!--        <LinearLayout-->
-<!--            android:layout_width="0dp"-->
-<!--            android:layout_height="match_parent"-->
-<!--            android:layout_weight="1">-->
-
-
-<!--        </LinearLayout>-->
-<!--    </LinearLayout>-->
 
     <VideoView
         android:id="@+id/video"
-        android:layout_width="match_parent"
+        android:layout_width="1212px"
         android:layout_height="match_parent"
-        android:layout_gravity="center_vertical"
+        android:layout_alignParentTop="true"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentTop="true">
+        android:layout_marginLeft="708px" >
 
     </VideoView>
 
-<!--    <Button-->
-<!--        android:visibility="gone"-->
-<!--        android:id="@+id/button1"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="70dp"-->
-<!--        android:layout_marginTop="850dp"-->
-<!--        android:background="@android:color/white"-->
-<!--        android:gravity="center"-->
-<!--        android:text="show/hide"-->
-<!--        android:textAlignment="center"-->
-<!--        android:textSize="50dp"-->
-<!--        android:textStyle="bold"></Button>-->
-
-
-<!--    <TextView-->
-<!--        android:id="@+id/url_text"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="50dp"-->
-<!--        android:layout_marginTop="800dp"-->
-<!--        android:gravity="center"-->
-<!--        android:text="url"-->
-<!--        android:textSize="30dp"-->
-<!--        android:textStyle="bold">-->
-
-<!--    </TextView>-->
 
 </RelativeLayout>

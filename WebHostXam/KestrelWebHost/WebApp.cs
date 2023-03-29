@@ -98,8 +98,9 @@ namespace WebHostXam.KestrelWebHost
                     }
                 }
                 return str;
-                
-
+            
         }
+        
+        
     }
 }

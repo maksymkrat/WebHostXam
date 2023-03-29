@@ -160,12 +160,6 @@ namespace WebHostXam.Android
 
                     _layout = receiptWindow.FindViewById<RelativeLayout>(Resource.Id.id_receipt_activity);
 
-                    // _layout.Touch += (sender, args) =>
-                    // {
-                    //     if (_receipt != null)
-                    //         StartReceipt(_receipt);
-                    // };
-
                     viewReceiptItems = receiptWindow.FindViewById<ListView>(Resource.Id.id_list_items);
                     textDiscount = receiptWindow.FindViewById<TextView>(Resource.Id.id_discount);
                     textReceiptAmount = receiptWindow.FindViewById<TextView>(Resource.Id.id_receipt_amount);
@@ -212,16 +206,11 @@ namespace WebHostXam.Android
                                                 SystemUiFlags.HideNavigation
                                                | SystemUiFlags.LayoutFullscreen
                                                | SystemUiFlags.LayoutHideNavigation
-                                               | SystemUiFlags.Fullscreen 
-                                                // |   SystemUiFlags.LayoutStable
-                                               | SystemUiFlags.LowProfile
+                                               | SystemUiFlags.Fullscreen
+                                                | SystemUiFlags.LowProfile
                                                 | SystemUiFlags.Immersive
                                                );
-                        // (StatusBarVisibility) (SystemUiFlags.HideNavigation
-                        //                        | SystemUiFlags.LayoutHideNavigation
-                        //                        | SystemUiFlags.Fullscreen
-                        //                        | SystemUiFlags.LayoutFullscreen
-                         // );
+                       
                     receiptWindow.Show();
                 }));
             }
