@@ -9,6 +9,8 @@ namespace WebHostXam.Managers
     {
         public Action<ReceiptModel> ActionStartReceipt { get; set; }
         public Action ActionFinishReceipt { get; set; }
+        
+       
         public ReceiptModel ReceiptModel { get; set; }
         
         private static ReceiptManager _receiptManager;
@@ -37,9 +39,13 @@ namespace WebHostXam.Managers
             ActionFinishReceipt.Invoke();
         }
 
+       
+
         public ReceiptModel DeserializeReceiptData(string data)
         {
             return JsonConvert.DeserializeObject<ReceiptModel>(data);
         }
+        
+        
     }
 }

@@ -4,6 +4,8 @@
     android:layout_height="match_parent"
     android:background="@android:color/holo_purple"
     android:layout_alignParentBottom="true"
+    android:clickable="false"
+
     >
 
     <LinearLayout
@@ -13,38 +15,46 @@
         android:layout_alignParentBottom="true"
         android:background="@android:color/white"
         android:rotation="-90"
+        android:layout_margin="0px"
+        android:padding="0px"
         android:translationX="-186px"
-        android:translationY="-186px">
+        android:translationY="-186px"
+        android:clickable="false"
+        android:visibility="visible">
         
         <WebView
-            android:id="@+id/webView"
+            android:id="@+id/upperWebView"
+            android:layout_margin="0px"
+            android:padding="0px"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
             
         </WebView>
-
-<!--        <TextView-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="match_parent"-->
-<!--            android:background="@android:color/white"-->
-<!--            android:layout_gravity="center"-->
-<!--            android:gravity="center"-->
-<!--            android:text="Вітаємо"-->
-<!--            android:textColor="@android:color/black"-->
-<!--            android:textSize="120px">-->
-<!--        </TextView>-->
+        
     </LinearLayout>
-
-
-    <VideoView
-        android:id="@+id/video"
+    
+    <WebView
+        android:id="@+id/bottomWebView"
         android:layout_width="1212px"
         android:layout_height="match_parent"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginLeft="708px" >
+        android:layout_marginLeft="708px"
+        android:padding="0px"
+        android:visibility="visible"
+        android:clickable="false"
+        >
+        
+    </WebView>
 
-    </VideoView>
+
+<!--    <VideoView-->
+<!--        android:id="@+id/video"-->
+<!--        android:layout_width="1212px"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:layout_alignParentTop="true"-->
+<!--        android:layout_alignParentBottom="true"-->
+<!--        android:layout_marginLeft="708px">-->
+
+<!--    </VideoView>-->
 
 
 </RelativeLayout>
