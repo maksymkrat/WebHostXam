@@ -17,10 +17,12 @@ using WebHostXam.Managers;
 using WebHostXam.Models;
 using Android.Views;
 using Android.Webkit;
+using Java.Util.Prefs;
 using ActionBar = Android.App.ActionBar;
 using Bitmap = System.Drawing.Bitmap;
 using Color = Android.Graphics.Color;
 using Path = System.IO.Path;
+using Preferences = Xamarin.Essentials.Preferences;
 using Uri = Android.Net.Uri;
 
 
@@ -29,7 +31,8 @@ namespace WebHostXam.Android
     [Activity(Label = "@string/app_name", Theme = "@style/AppTheme", MainLauncher = true)]
     public class MainActivity : AppCompatActivity
     {
-
+        private const string IsOpenShift = "IsOpenShift";
+        
         LinearLayout receiptLayout;
         ListView viewReceiptItems;
         TextView textDiscount;
@@ -58,7 +61,7 @@ namespace WebHostXam.Android
         private View decorView;
 
         private RelativeLayout _layout;
-
+        private LinearLayout _black_layout;
         private ReceiptModel _receipt;
         private string html;
         
@@ -89,10 +92,12 @@ namespace WebHostXam.Android
             SetContentView(Resource.Layout.activity_main);
 
             Initialize();
+           
             
             upperWebView = FindViewById<WebView>(Resource.Id.upperWebView);
             bottomWebView = FindViewById<WebView>(Resource.Id.bottomWebView);
-            
+            _black_layout = FindViewById<LinearLayout>(Resource.Id.black_layout);
+
             //reae byte and create video
             //  var b64Str = System.IO.File.ReadAllText(@"/storage/emulated/0/Data/textFile.txt");
             //  Byte[] bytes = Convert.FromBase64String(b64Str);
@@ -107,10 +112,10 @@ namespace WebHostXam.Android
             //         stream.Close();
             //     }
             // }
-            
+
             //html = System.IO.File.ReadAllText(@"/storage/emulated/0/Data/test2.html");
 
-           
+
 
         }
 
@@ -124,7 +129,34 @@ namespace WebHostXam.Android
             }
             return string.Empty;
         }
-        
+
+        public void OpenShift()
+        {
+            Preferences.Set(IsOpenShift, "true");
+            RunOnUiThread((() =>
+            {
+                WindowManagerLayoutParams param = Window.Attributes;
+                param.ScreenBrightness = 1;
+                Window.Attributes = param;
+                
+                _black_layout.Visibility = ViewStates.Invisible;
+                SetUiFlags();
+            }));
+        }
+
+        public void CloseShift()
+        {
+            Preferences.Set(IsOpenShift, "false");
+            RunOnUiThread((() =>
+            {
+                WindowManagerLayoutParams param = Window.Attributes;
+                param.ScreenBrightness = 0;
+                Window.Attributes = param;
+                
+                _black_layout.Visibility = ViewStates.Visible;
+                SetUiFlags();
+            }));
+        }
 
         public void HideReceiptWindow()
         {
@@ -276,6 +308,8 @@ namespace WebHostXam.Android
             receiptManager.ActionStartReceipt += model => StartReceipt(model);
             viewManager.ActionChangeUpperView += view => ChangeUpperView(view);
             viewManager.ActionChangeBottomView += view => ChangeBottomView(view);
+            viewManager.ActionOpenShift += OpenShift;
+            viewManager.ActionCloseShift += CloseShift;
         }
 
         protected global::Android.Graphics.Bitmap ConvertStringBase64ToBitmap(string str)

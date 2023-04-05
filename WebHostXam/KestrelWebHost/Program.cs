@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Hosting;
+﻿using System;
+using System.Diagnostics;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 using System.IO;
 using System.Reflection;
 using System.Threading.Tasks;
-
+using Microsoft.Extensions.FileProviders;
 using Xamarinme;
 using Microsoft.Extensions.Hosting.Internal;
 using Microsoft.Extensions.DependencyInjection;
@@ -28,14 +30,19 @@ namespace WebHostXam.KestrelWebHost
                 .ConfigureServices((hostContext, services) =>
                 {
                     services.AddSingleton<IHostLifetime, ConsoleLifetimePatch>();
-                   // services.AddSingleton<IReceiptManager, ReceiptManager>();
                 })
+                
                 .UseKestrel(options =>
                 {
                     options.Listen(webHostParameters.ServerIpEndpoint);
                 })
+
                 .UseContentRoot(Directory.GetCurrentDirectory())
+                //.UseContentRoot(Process.GetCurrentProcess().MainModule.FileName)
+                // .UseContentRoot(Environment.GetFolderPath (Environment.SpecialFolder.MyDocuments))
+                //.UseContentRoot(@"/storage/emulated/0/Download/")
                 .UseStartup<Startup>()
+                
                 .Build();
 
             App.Host = webHost;

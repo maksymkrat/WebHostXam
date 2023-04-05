@@ -10,6 +10,8 @@ namespace WebHostXam.Managers
     {
         public Action<WindowViewModel> ActionChangeUpperView { get; set; }
         public Action<WindowViewModel> ActionChangeBottomView { get; set; }
+        public Action ActionOpenShift { get; set; }
+        public Action ActionCloseShift { get; set; }
         
         private static WindowViewManager _viewManager;
 
@@ -26,6 +28,16 @@ namespace WebHostXam.Managers
             }
 
             return _viewManager;
+        }
+
+        public void OpenShift()
+        {
+            ActionOpenShift.Invoke();
+        }
+
+        public void CloseShift()
+        {
+            ActionCloseShift.Invoke();
         }
 
         public void ChangeUpperView(WindowViewModel model)

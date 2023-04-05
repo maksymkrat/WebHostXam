@@ -47,6 +47,7 @@ namespace WebHostXam
             try
             {
                 WebHostParameters.ServerIpEndpoint = new IPEndPoint(NetworkHelper.GetIpAddress(), 3555);
+               //WebHostParameters.ServerIpEndpoint = new IPEndPoint(IPAddress.Parse("0.0.0.0"), 3555);
             }
             catch (Exception e)
             {
@@ -58,10 +59,10 @@ namespace WebHostXam
         {
             try
             {
-                var localsavedIp = Preferences.Get(DEVICE_IP, NONE);
+                var localSavedIp = Preferences.Get(DEVICE_IP, NONE);
                 var currentIp = WebHostParameters.ServerIpEndpoint.Address.ToString();
                 
-                if (localsavedIp.Equals(NONE))
+                if (localSavedIp.Equals(NONE))
                 {
                     Preferences.Set(DEVICE_IP, currentIp);
                     SendIp(currentIp);
@@ -69,7 +70,7 @@ namespace WebHostXam
                 }
                 else
                 {
-                    if (!localsavedIp.Equals(currentIp))
+                    if (!localSavedIp.Equals(currentIp))
                     {
                         Preferences.Set(DEVICE_IP, currentIp);
                         SendIp(currentIp);

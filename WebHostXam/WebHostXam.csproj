@@ -6,6 +6,7 @@
 
     <ItemGroup>
       <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.2.0" />
+      <PackageReference Include="Microsoft.Extensions.FileProviders.Physical" Version="8.0.0-preview.2.23128.3" />
       <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
       <PackageReference Include="Xamarin.Essentials" Version="1.6.1" />
       <PackageReference Include="Xamarinme.Configuration" Version="1.0.2" />

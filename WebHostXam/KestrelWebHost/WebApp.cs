@@ -19,8 +19,11 @@ namespace WebHostXam.KestrelWebHost
         private const string SendReceipt = "/sr"; //"/SendReceipt";
         private const string FinishReceipt = "/f"; // "/FinishReceipt";
         private const string SendNewUpperWindowView = "/suv"; //"SendNewUpperWindowView";
-        private const string SendNewBottomWindowView = "/sbv"; //"SendNewBottomWindowView";
-        private const string GetVideo = "/v.mp4"; //GetVideo
+        private const string OpenShift = "/os";
+        private const string CloseShift = "/cs";
+        
+        //private const string SendNewBottomWindowView = "/sbv"; //"SendNewBottomWindowView";
+        //private const string GetVideo = "/v.mp4"; //GetVideo
 
         private static FileStreamResult videoStream = null;
 
@@ -53,15 +56,16 @@ namespace WebHostXam.KestrelWebHost
             try
             {
                  Instance.RecognizeMethod(httpContext);
+                 
                 response.StatusCode = 200;
                 _serverStatus = Encoding.UTF8.GetBytes("server running");
-                // if (videoStream != null)
-                // {
-                   //
-                   //  var bytes = System.IO.File.ReadAllBytes(@"/storage/emulated/0/Data/videokuskus.mp4");
-                   //  response.ContentType = "video/mp4";
-                   // return response.Body.WriteAsync(bytes, 0, bytes.Length);
-                //}
+                //  if (videoStream != null)
+                //  {
+                //    
+                //      var bytes = System.IO.File.ReadAllBytes(@"/storage/emulated/0/Data/videokuskus.mp4");
+                //      response.ContentType = "video/mp4";
+                //     return response.Body.WriteAsync(bytes, 0, bytes.Length);
+                // }
             }
             catch (Exception e)
             {
@@ -93,21 +97,29 @@ namespace WebHostXam.KestrelWebHost
                         break;
 
                     case SendNewUpperWindowView:
-                        var strViewUpperData = ReadBodyFromRequest(context);
-                       var newUpperView =  _viewManager.DeserializeWindowVewData(strViewUpperData);
+                       //  var strViewUpperData = ReadBodyFromRequest(context);
+                       // var newUpperView =  _viewManager.DeserializeWindowVewData(strViewUpperData);
+                       var newUpperView = new WindowViewModel();
                         _viewManager.ChangeUpperView(newUpperView);
                         break;
                     
-                    case SendNewBottomWindowView:
-                        var strViewBottomData = ReadBodyFromRequest(context);
-                        var newBottomView =  _viewManager.DeserializeWindowVewData(strViewBottomData);
-                        _viewManager.ChangeBottomView(newBottomView);
+                    case OpenShift:
+                        _viewManager.OpenShift();
                         break;
                     
-                    case GetVideo:
-                        //var videoStream = _viewManager.GetVideo();
- 
+                    case CloseShift:
+                        _viewManager.CloseShift();
                         break;
+                    
+                    // case SendNewBottomWindowView:
+                    //     var strViewBottomData = ReadBodyFromRequest(context);
+                    //     var newBottomView =  _viewManager.DeserializeWindowVewData(strViewBottomData);
+                    //     _viewManager.ChangeBottomView(newBottomView);
+                    //     break;
+                    
+                    // case GetVideo:
+                    //      videoStream = _viewManager.GetVideo();
+                    //     break;
                 }
             }
             catch (Exception e)
