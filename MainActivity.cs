@@ -17,6 +17,7 @@ using WebHostXam.Managers;
 using WebHostXam.Models;
 using Android.Views;
 using Android.Webkit;
+using Xamarin.Essentials;
 using ActionBar = Android.App.ActionBar;
 using Bitmap = System.Drawing.Bitmap;
 using Color = Android.Graphics.Color;
@@ -60,11 +61,13 @@ namespace WebHostXam.Android
         private RelativeLayout _layout;
 
         private ReceiptModel _receipt;
+        private LinearLayout _black_layout;
         private string html;
         
         
         private readonly string ServerURL = "http://172.19.100.133:5555/GetHTMLWindowView";
         private readonly   HttpClient _httpClient= new HttpClient();
+        private const string IsOpenShift = "IsOpenShift";
 
 
 
@@ -92,6 +95,7 @@ namespace WebHostXam.Android
             
             upperWebView = FindViewById<WebView>(Resource.Id.upperWebView);
             bottomWebView = FindViewById<WebView>(Resource.Id.bottomWebView);
+            _black_layout = FindViewById<LinearLayout>(Resource.Id.black_layout);
             
             //reae byte and create video
             //  var b64Str = System.IO.File.ReadAllText(@"/storage/emulated/0/Data/textFile.txt");
@@ -140,6 +144,34 @@ namespace WebHostXam.Android
                         Offer2 = null;
                     }
                 ));
+        }
+        
+        public void OpenShift()
+        {
+            Preferences.Set(IsOpenShift, "true");
+            RunOnUiThread((() =>
+            {
+                WindowManagerLayoutParams param = Window.Attributes;
+                param.ScreenBrightness = 1;
+                Window.Attributes = param;
+                
+                _black_layout.Visibility = ViewStates.Invisible;
+                SetUiFlags();
+            }));
+        }
+
+        public void CloseShift()
+        {
+            Preferences.Set(IsOpenShift, "false");
+            RunOnUiThread((() =>
+            {
+                WindowManagerLayoutParams param = Window.Attributes;
+                param.ScreenBrightness = 0;
+                Window.Attributes = param;
+                
+                _black_layout.Visibility = ViewStates.Visible;
+                SetUiFlags();
+            }));
         }
 
         public async void ChangeUpperView(WindowViewModel view)
@@ -276,6 +308,8 @@ namespace WebHostXam.Android
             receiptManager.ActionStartReceipt += model => StartReceipt(model);
             viewManager.ActionChangeUpperView += view => ChangeUpperView(view);
             viewManager.ActionChangeBottomView += view => ChangeBottomView(view);
+            viewManager.ActionOpenShift += OpenShift;
+            viewManager.ActionCloseShift += CloseShift;
         }
 
         protected global::Android.Graphics.Bitmap ConvertStringBase64ToBitmap(string str)

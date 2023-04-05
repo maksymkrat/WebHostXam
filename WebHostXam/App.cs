@@ -46,7 +46,9 @@ namespace WebHostXam
         {
             try
             {
-                WebHostParameters.ServerIpEndpoint = new IPEndPoint(NetworkHelper.GetIpAddress(), 3555);
+                //WebHostParameters.ServerIpEndpoint = new IPEndPoint(NetworkHelper.GetIpAddress(), 3555);
+                WebHostParameters.ServerIpEndpoint = new IPEndPoint(IPAddress.Parse("0.0.0.0"), 3555);
+
             }
             catch (Exception e)
             {

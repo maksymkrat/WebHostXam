@@ -18,6 +18,8 @@ namespace WebHostXam.KestrelWebHost
 
         private const string SendReceipt = "/sr"; //"/SendReceipt";
         private const string FinishReceipt = "/f"; // "/FinishReceipt";
+        private const string OpenShift = "/os";
+        private const string CloseShift = "/cs";
         private const string SendNewUpperWindowView = "/suv"; //"SendNewUpperWindowView";
         private const string SendNewBottomWindowView = "/sbv"; //"SendNewBottomWindowView";
         private const string GetVideo = "/v.mp4"; //GetVideo
@@ -90,6 +92,14 @@ namespace WebHostXam.KestrelWebHost
                         break;
                     case FinishReceipt:
                         _receiptManager.FinishReceipt();
+                        break;
+                    
+                    case OpenShift:
+                        _viewManager.OpenShift();
+                        break;
+                    
+                    case CloseShift:
+                        _viewManager.CloseShift();
                         break;
 
                     case SendNewUpperWindowView:

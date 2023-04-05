@@ -28,13 +28,16 @@ namespace WebHostXam.KestrelWebHost
                 .ConfigureServices((hostContext, services) =>
                 {
                     services.AddSingleton<IHostLifetime, ConsoleLifetimePatch>();
-                   // services.AddSingleton<IReceiptManager, ReceiptManager>();
+                  
                 })
                 .UseKestrel(options =>
                 {
                     options.Listen(webHostParameters.ServerIpEndpoint);
                 })
                 .UseContentRoot(Directory.GetCurrentDirectory())
+                //.UseContentRoot(Process.GetCurrentProcess().MainModule.FileName)
+                // .UseContentRoot(Environment.GetFolderPath (Environment.SpecialFolder.MyDocuments))
+                //.UseContentRoot(@"/storage/emulated/0/Download/")
                 .UseStartup<Startup>()
                 .Build();
 
