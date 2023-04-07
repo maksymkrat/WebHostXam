@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Net.Http;
@@ -20,14 +21,16 @@ namespace WebHostXam
         public static WebHostParameters WebHostParameters { get; set; } = new WebHostParameters();
         private const String DEVICE_IP = "device_ip";
         private const String NONE = "none";
-        
-        private readonly string ServerURL = "http://172.19.100.133:5555/InsertOrUpdateTabletIp";
+        private const string ServerURLForIp = "http://172.19.100.133:5555/InsertOrUpdateTabletIp";
+        private const string ServerURLForMedia = "http://172.19.100.133:5555/GetMediaFiles";
+        private const string AccessData = "Hilgrup1289";
         private readonly   HttpClient _httpClient= new HttpClient();
 
         public App()
         {
             InitServerIp();
             ComparisonIp();
+           DownloadMediaContent();
 
             new Thread(async () =>
             {
@@ -93,12 +96,43 @@ namespace WebHostXam
                 var tabletInfo = new TabletInfoModel(ip, mac);
                 var json = JsonConvert.SerializeObject(tabletInfo);
                 var data = new StringContent(json, Encoding.UTF8, "application/json");
-                var response = await _httpClient.PostAsync(ServerURL, data);
+                var response = await _httpClient.PostAsync(ServerURLForIp, data);
 
             }
             catch (Exception e)
             {
                 
+                throw;
+            }
+        }
+
+        private async Task DownloadMediaContent()
+        {
+            try
+            {
+                var data = new StringContent($"\"{AccessData}\"", Encoding.UTF8, "application/json");
+                var response = await _httpClient.PostAsync(ServerURLForMedia, data);
+                var str = await response.Content.ReadAsStringAsync();
+               
+                var files =  JsonConvert.DeserializeObject<List<FIleModel>>(str);
+                foreach (var file in files)
+                {
+                    if (File.Exists($"/storage/emulated/0/Download/{file.FileName}.{file.FileExtension}"))
+                    {
+                        File.Delete($"/storage/emulated/0/Download/{file.FileName}.{file.FileExtension}");
+                    }
+                    Byte[] bytes = Convert.FromBase64String(file.Base64);
+                    FileInfo fileInfo = new FileInfo($"/storage/emulated/0/Download/{file.FileName}.{file.FileExtension}");
+                    using (Stream stream = fileInfo.OpenWrite())
+                    {
+                        stream.Write(bytes,0 ,bytes.Length);
+                        stream.Close();
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+               
                 throw;
             }
         }

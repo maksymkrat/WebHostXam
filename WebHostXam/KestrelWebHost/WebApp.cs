@@ -11,7 +11,7 @@ using WebHostXam.Models;
 
 namespace WebHostXam.KestrelWebHost
 {
-    public class WebApp
+    public class WebApp : ControllerBase
     {
         private readonly ReceiptManager _receiptManager;
         private readonly WindowViewManager _viewManager;
@@ -22,9 +22,10 @@ namespace WebHostXam.KestrelWebHost
         private const string CloseShift = "/cs";
         private const string SendNewUpperWindowView = "/suv"; //"SendNewUpperWindowView";
         private const string SendNewBottomWindowView = "/sbv"; //"SendNewBottomWindowView";
-        private const string GetVideo = "/v.mp4"; //GetVideo
+        private const string GetVideo = "/video.mp4"; //GetVideo
+        private const string GetImg = "/img.png"; //GetImg
 
-        private static FileStreamResult videoStream = null;
+        private static FileStreamResult mediaStream = null;
 
 
         private static byte[] _serverStatus = Encoding.UTF8.GetBytes(
@@ -45,25 +46,38 @@ namespace WebHostXam.KestrelWebHost
         {
             _receiptManager = ReceiptManager.GetInstance();
             _viewManager = WindowViewManager.GetInstance();
+            
         }
 
 
         public  static Task OnHttpRequest(HttpContext httpContext)
         {
             var response = httpContext.Response;
-
+            var page = httpContext.Request.Path.ToString();
             try
             {
-                 Instance.RecognizeMethod(httpContext);
-                response.StatusCode = 200;
-                _serverStatus = Encoding.UTF8.GetBytes("server running");
-                // if (videoStream != null)
-                // {
-                   //
-                   //  var bytes = System.IO.File.ReadAllBytes(@"/storage/emulated/0/Data/videokuskus.mp4");
-                   //  response.ContentType = "video/mp4";
-                   // return response.Body.WriteAsync(bytes, 0, bytes.Length);
-                //}
+                if (page.Contains("/files"))  
+                {
+                    var contentType = Instance.GetContentType($".{page.Split('.')[1]}");
+                    response.ContentType = contentType;
+                    mediaStream = Instance.GetMedia(page.Split('/')[2], contentType);
+                    Byte[] bytes = new Byte[0];
+                    using (MemoryStream ms = new MemoryStream())
+                    {
+                        mediaStream.FileStream.CopyTo(ms);
+                        bytes = ms.ToArray();
+                    }
+                    mediaStream = null;
+                    return response.Body.WriteAsync(bytes, 0, bytes.Length);
+                   
+                }
+                else
+                {
+                    Instance.RecognizeMethod(httpContext);
+                    response.StatusCode = 200;
+                    _serverStatus = Encoding.UTF8.GetBytes("server running");
+                }
+                
             }
             catch (Exception e)
             {
@@ -103,27 +117,45 @@ namespace WebHostXam.KestrelWebHost
                         break;
 
                     case SendNewUpperWindowView:
-                        var strViewUpperData = ReadBodyFromRequest(context);
-                       var newUpperView =  _viewManager.DeserializeWindowVewData(strViewUpperData);
-                        _viewManager.ChangeUpperView(newUpperView);
+                        _viewManager.ChangeUpperView();
                         break;
-                    
-                    case SendNewBottomWindowView:
-                        var strViewBottomData = ReadBodyFromRequest(context);
-                        var newBottomView =  _viewManager.DeserializeWindowVewData(strViewBottomData);
-                        _viewManager.ChangeBottomView(newBottomView);
-                        break;
-                    
-                    case GetVideo:
-                        //var videoStream = _viewManager.GetVideo();
- 
-                        break;
+                   
                 }
             }
             catch (Exception e)
             {
                 throw;
             }
+        }
+        
+        public FileStreamResult GetMedia( string fileName, string mediaType)
+        {
+           
+            var pathV = $"/storage/emulated/0/Download/{fileName}";
+            FileStream stream = System.IO.File.Open(pathV, FileMode.OpenOrCreate, FileAccess.Read, FileShare.Read);
+            return File(stream, mediaType);
+         
+
+        }
+
+        public string GetContentType(string extension)
+        {
+            switch (extension)
+            {
+                case ".png":
+                    return "image/png";
+                case ".mp4":
+                    return "video/mp4";
+                case ".avi":
+                    return "video/avi";
+                case "jpeg":
+                case "jpg":
+                    return "image/jpeg";
+                case ".gif":
+                    return "image/gif";
+            } 
+            return string.Empty;
+
         }
 
 

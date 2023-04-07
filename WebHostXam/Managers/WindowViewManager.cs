@@ -8,10 +8,12 @@ namespace WebHostXam.Managers
 {
     public class WindowViewManager : ControllerBase
     {
-        public Action<WindowViewModel> ActionChangeUpperView { get; set; }
+        public Action ActionChangeUpperView { get; set; }
         public Action<WindowViewModel> ActionChangeBottomView { get; set; }
         public Action ActionOpenShift { get; set; }
         public Action ActionCloseShift { get; set; }
+        private const string GetVideo = "/video.mp4"; //GetVideo
+        private const string GetImg = "/img.png"; //GetImg
         
         private static WindowViewManager _viewManager;
 
@@ -39,9 +41,9 @@ namespace WebHostXam.Managers
             ActionCloseShift.Invoke();
         }
 
-        public void ChangeUpperView(WindowViewModel model)
+        public void ChangeUpperView()
         {
-            ActionChangeUpperView.Invoke(model);
+            ActionChangeUpperView.Invoke();
         }
         
         public void ChangeBottomView(WindowViewModel model)
@@ -49,12 +51,24 @@ namespace WebHostXam.Managers
             ActionChangeBottomView.Invoke(model);
         }
 
-        public FileStreamResult GetVideo()
+        public FileStreamResult GetMedia( string mediaType)
         {
-            var path = "/storage/emulated/0/Data/videokuskus.mp4";
-            FileStream stream = System.IO.File.Open(path, FileMode.OpenOrCreate);
-            return File(stream, "video/mp4");
-           
+            if (mediaType.Equals(GetVideo))
+            {
+                var pathV = "/storage/emulated/0/Download/video.mp4";
+                FileStream stream = System.IO.File.Open(pathV, FileMode.OpenOrCreate);
+                return File(stream, "video/mp4");
+            }
+            
+            if (mediaType.Equals(GetImg))
+            {
+                var pathV = "/storage/emulated/0/Download/img.png";
+                FileStream stream = System.IO.File.Open(pathV, FileMode.OpenOrCreate);
+                return File(stream, "image/png");
+            }
+
+            return null;
+
         }
         
         public WindowViewModel DeserializeWindowVewData(string data)

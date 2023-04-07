@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.IO;
 using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 using Android;
 using Android.App;
@@ -68,6 +69,7 @@ namespace WebHostXam.Android
         private readonly string ServerURL = "http://172.19.100.133:5555/GetHTMLWindowView";
         private readonly   HttpClient _httpClient= new HttpClient();
         private const string IsOpenShift = "IsOpenShift";
+        private readonly string AccessData = "Hilgrup1289";
 
 
 
@@ -115,12 +117,13 @@ namespace WebHostXam.Android
             //html = System.IO.File.ReadAllText(@"/storage/emulated/0/Data/test2.html");
 
            
-
+            //ChangeUpperView();
         }
 
         public async Task<string> GetHTMLForView()
         {
-            var response = await _httpClient.GetAsync(ServerURL);
+            var data = new StringContent($"\"{AccessData}\"", Encoding.UTF8, "application/json");
+            var response = await _httpClient.PostAsync(ServerURL,  data);
 
             if(response.IsSuccessStatusCode)
             {
@@ -174,7 +177,7 @@ namespace WebHostXam.Android
             }));
         }
 
-        public async void ChangeUpperView(WindowViewModel view)
+        public async void ChangeUpperView()
         {
             html = await GetHTMLForView();
             RunOnUiThread((() =>
@@ -306,7 +309,7 @@ namespace WebHostXam.Android
         {
             receiptManager.ActionFinishReceipt += HideReceiptWindow;
             receiptManager.ActionStartReceipt += model => StartReceipt(model);
-            viewManager.ActionChangeUpperView += view => ChangeUpperView(view);
+            viewManager.ActionChangeUpperView += ChangeUpperView;
             viewManager.ActionChangeBottomView += view => ChangeBottomView(view);
             viewManager.ActionOpenShift += OpenShift;
             viewManager.ActionCloseShift += CloseShift;
