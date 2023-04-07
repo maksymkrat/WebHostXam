@@ -18,9 +18,6 @@ namespace WebHostXam.KestrelWebHost
     {
         public static Task Main(WebHostParameters webHostParameters)
         {
-            var fileProvider = new PhysicalFileProvider(@"/storage/emulated/0/Download");
-            var requestPath = "/files";
-            
             var webHost = new WebHostBuilder()
                 
                 .ConfigureAppConfiguration((config) =>
@@ -39,21 +36,7 @@ namespace WebHostXam.KestrelWebHost
                     services.AddDirectoryBrowser();
 
                 })
-                .Configure((builder =>
-                {
-                    builder.UseStaticFiles();
-                    builder.UseStaticFiles(new StaticFileOptions
-                    {
-                        FileProvider = fileProvider,
-                        RequestPath = requestPath
-                    });
-
-                    builder.UseDirectoryBrowser(new DirectoryBrowserOptions
-                    {
-                        FileProvider = fileProvider,
-                        RequestPath = requestPath
-                    });
-                } ))
+               
                 .UseKestrel(options =>
                 {
                     options.Listen(webHostParameters.ServerIpEndpoint);

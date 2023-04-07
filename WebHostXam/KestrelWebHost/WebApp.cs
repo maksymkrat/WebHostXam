@@ -20,10 +20,6 @@ namespace WebHostXam.KestrelWebHost
         private const string FinishReceipt = "/f"; // "/FinishReceipt";
         private const string OpenShift = "/os";
         private const string CloseShift = "/cs";
-        private const string SendNewUpperWindowView = "/suv"; //"SendNewUpperWindowView";
-        private const string SendNewBottomWindowView = "/sbv"; //"SendNewBottomWindowView";
-        private const string GetVideo = "/video.mp4"; //GetVideo
-        private const string GetImg = "/img.png"; //GetImg
 
         private static FileStreamResult mediaStream = null;
 
@@ -116,9 +112,6 @@ namespace WebHostXam.KestrelWebHost
                         _viewManager.CloseShift();
                         break;
 
-                    case SendNewUpperWindowView:
-                        _viewManager.ChangeUpperView();
-                        break;
                    
                 }
             }
