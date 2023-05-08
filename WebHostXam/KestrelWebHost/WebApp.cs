@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http;
+using Microsoft.Extensions.Primitives;
 using WebHostXam.Managers;
 using WebHostXam.Models;
 
@@ -20,8 +22,9 @@ namespace WebHostXam.KestrelWebHost
         private const string FinishReceipt = "/f"; // "/FinishReceipt";
         private const string OpenShift = "/os";
         private const string CloseShift = "/cs";
+        private const string SendUpperView = "/suv";
 
-        private static FileStreamResult mediaStream = null;
+        //private static FileStreamResult mediaStream = null;
 
 
         private static byte[] _serverStatus = Encoding.UTF8.GetBytes(
@@ -46,7 +49,7 @@ namespace WebHostXam.KestrelWebHost
         }
 
 
-        public  static Task OnHttpRequest(HttpContext httpContext)
+        public   static async Task OnHttpRequest(HttpContext httpContext)
         {
             var response = httpContext.Response;
             var page = httpContext.Request.Path.ToString();
@@ -56,16 +59,24 @@ namespace WebHostXam.KestrelWebHost
                 {
                     var contentType = Instance.GetContentType($".{page.Split('.')[1]}");
                     response.ContentType = contentType;
-                    mediaStream = Instance.GetMedia(page.Split('/')[2], contentType);
-                    Byte[] bytes = new Byte[0];
-                    using (MemoryStream ms = new MemoryStream())
-                    {
-                        mediaStream.FileStream.CopyTo(ms);
-                        bytes = ms.ToArray();
-                    }
-                    mediaStream = null;
-                    return response.Body.WriteAsync(bytes, 0, bytes.Length);
+                    
+                    //
+                    // var mediaStream = Instance.GetMedia(page.Split('/')[2], contentType);
+                    // Byte[] bytes = new Byte[0];
+                    // using (MemoryStream ms = new MemoryStream())
+                    // {
+                    //     mediaStream.FileStream.CopyTo(ms);
+                    //     bytes = ms.ToArray();
+                    // }
+                    var bytes = Instance.GetMedia2(page.Split('/')[2], contentType);
+                    response.Headers.ContentLength = bytes.Length;
                    
+                    //response.Headers.Add("content-disposition", "attachment;filename=pik.jpg");
+                    //response.Headers.Add("Content-Length", bytes.Length.ToString());
+                    
+                    await response.Body.WriteAsync(bytes, 0, bytes.Length);
+                       return;
+
                 }
                 else
                 {
@@ -85,7 +96,8 @@ namespace WebHostXam.KestrelWebHost
 
             response.ContentType = "text/plain";
             response.ContentLength = _serverStatus.Length;
-            return  response.Body.WriteAsync(_serverStatus, 0, _serverStatus.Length);
+            response.Body.WriteAsync(_serverStatus, 0, _serverStatus.Length);
+            return;
         }
 
 
@@ -111,6 +123,10 @@ namespace WebHostXam.KestrelWebHost
                     case CloseShift:
                         _viewManager.CloseShift();
                         break;
+                    
+                    case SendUpperView:
+                        _viewManager.ChangeUpperView();
+                        break;
 
                    
                 }
@@ -123,12 +139,19 @@ namespace WebHostXam.KestrelWebHost
         
         public FileStreamResult GetMedia( string fileName, string mediaType)
         {
-           
             var pathV = $"/storage/emulated/0/Download/{fileName}";
             FileStream stream = System.IO.File.Open(pathV, FileMode.OpenOrCreate, FileAccess.Read, FileShare.Read);
             return File(stream, mediaType);
-         
-
+            
+        }
+        
+        public byte[] GetMedia2( string fileName, string mediaType)
+        {
+            var pathV = $"/storage/emulated/0/Download/{fileName}";
+            byte[] response;
+            response =  System.IO.File.ReadAllBytes(pathV);
+            return response;
+            
         }
 
         public string GetContentType(string extension)
@@ -141,8 +164,8 @@ namespace WebHostXam.KestrelWebHost
                     return "video/mp4";
                 case ".avi":
                     return "video/avi";
-                case "jpeg":
-                case "jpg":
+                case ".jpeg":
+                case ".jpg":
                     return "image/jpeg";
                 case ".gif":
                     return "image/gif";

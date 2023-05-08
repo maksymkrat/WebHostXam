@@ -12,9 +12,8 @@ namespace WebHostXam.Managers
         public Action<WindowViewModel> ActionChangeBottomView { get; set; }
         public Action ActionOpenShift { get; set; }
         public Action ActionCloseShift { get; set; }
-        private const string GetVideo = "/video.mp4"; //GetVideo
-        private const string GetImg = "/img.png"; //GetImg
         
+       
         private static WindowViewManager _viewManager;
 
         private WindowViewManager()
@@ -46,30 +45,26 @@ namespace WebHostXam.Managers
             ActionChangeUpperView.Invoke();
         }
         
-        public void ChangeBottomView(WindowViewModel model)
-        {
-            ActionChangeBottomView.Invoke(model);
-        }
 
-        public FileStreamResult GetMedia( string mediaType)
-        {
-            if (mediaType.Equals(GetVideo))
-            {
-                var pathV = "/storage/emulated/0/Download/video.mp4";
-                FileStream stream = System.IO.File.Open(pathV, FileMode.OpenOrCreate);
-                return File(stream, "video/mp4");
-            }
-            
-            if (mediaType.Equals(GetImg))
-            {
-                var pathV = "/storage/emulated/0/Download/img.png";
-                FileStream stream = System.IO.File.Open(pathV, FileMode.OpenOrCreate);
-                return File(stream, "image/png");
-            }
-
-            return null;
-
-        }
+        // public FileStreamResult GetMedia( string mediaType)
+        // {
+        //     if (mediaType.Equals(GetVideo))
+        //     {
+        //         var pathV = "/storage/emulated/0/Download/video.mp4";
+        //         FileStream stream = System.IO.File.Open(pathV, FileMode.OpenOrCreate);
+        //         return File(stream, "video/mp4");
+        //     }
+        //     
+        //     if (mediaType.Equals(GetImg))
+        //     {
+        //         var pathV = "/storage/emulated/0/Download/img.png";
+        //         FileStream stream = System.IO.File.Open(pathV, FileMode.OpenOrCreate);
+        //         return File(stream, "image/png");
+        //     }
+        //
+        //     return null;
+        //
+        // }
         
         public WindowViewModel DeserializeWindowVewData(string data)
         {

@@ -31,13 +31,12 @@ namespace WebHostXam.Android
     [Activity(Label = "@string/app_name", Theme = "@style/AppTheme", MainLauncher = true)]
     public class MainActivity : AppCompatActivity
     {
-
         LinearLayout receiptLayout;
         ListView viewReceiptItems;
         TextView textDiscount;
         TextView textReceiptAmount;
         ReceiptManager receiptManager;
-         WindowViewManager viewManager;
+        WindowViewManager viewManager;
         ReceiptItemAdapter adapter;
         Dialog receiptWindow = null;
 
@@ -60,29 +59,32 @@ namespace WebHostXam.Android
         private View decorView;
 
         private RelativeLayout _layout;
+        private LinearLayout _receipt_plcace;
+        private VideoView _videoView;
 
         private ReceiptModel _receipt;
         private LinearLayout _black_layout;
         private string html;
         
-        
-        private readonly string ServerURL = "http://172.19.100.133:5555/GetHTMLWindowView";
-        private readonly   HttpClient _httpClient= new HttpClient();
+
+
+        private const string bodyStyle = "<style>body {margin: 0; padding: 0;}</style>";
+        private readonly string ServerURL = "http://193.193.222.87:5600/GetHTMLWindowView";
+        private readonly HttpClient _httpClient = new HttpClient();
         private const string IsOpenShift = "IsOpenShift";
         private readonly string AccessData = "Hilgrup1289";
-
-
 
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-            
-            string[] perm = new string[] { Manifest.Permission.WriteExternalStorage, Manifest.Permission.WriteExternalStorage };
+
+            string[] perm = new string[]
+                {Manifest.Permission.WriteExternalStorage, Manifest.Permission.WriteExternalStorage};
             RequestPermissions(perm, 325);
 
-           SetUiFlags();
-            
+            SetUiFlags();
+
             Window.AddFlags(WindowManagerFlags.Fullscreen);
             RequestedOrientation = ScreenOrientation.Landscape;
 
@@ -90,15 +92,25 @@ namespace WebHostXam.Android
             var host = new App();
             receiptManager = ReceiptManager.GetInstance();
             viewManager = WindowViewManager.GetInstance();
-            
+
             SetContentView(Resource.Layout.activity_main);
 
             Initialize();
-            
+
             upperWebView = FindViewById<WebView>(Resource.Id.upperWebView);
-            bottomWebView = FindViewById<WebView>(Resource.Id.bottomWebView);
-            _black_layout = FindViewById<LinearLayout>(Resource.Id.black_layout);
+            upperWebView.Settings.JavaScriptEnabled = true;
+            upperWebView.ClearCache(true);
             
+
+            _receipt_plcace = FindViewById<LinearLayout>(Resource.Id.receipt_place);
+            _receipt_plcace.Clickable = false;
+            _receipt_plcace.Click += (sender, args) => { return; };
+
+           // bottomWebView = FindViewById<WebView>(Resource.Id.bottomWebView);
+            _black_layout = FindViewById<LinearLayout>(Resource.Id.black_layout);
+            _videoView = FindViewById<VideoView>(Resource.Id.video);
+            _videoView.SetBackgroundColor(Color.Red);
+
             //reae byte and create video
             //  var b64Str = System.IO.File.ReadAllText(@"/storage/emulated/0/Data/textFile.txt");
             //  Byte[] bytes = Convert.FromBase64String(b64Str);
@@ -113,25 +125,62 @@ namespace WebHostXam.Android
             //         stream.Close();
             //     }
             // }
-            
+
             //html = System.IO.File.ReadAllText(@"/storage/emulated/0/Data/test2.html");
+            
+            //html =  String.Empty;//GetHTMLForView();
+            html = "<video autoplay muted loop ><source src=\"http://127.0.0.1:3555/files/vid2.mp4\" type=\"video/mp4\"></video>";
+            //html = "<img src=\"http://127.0.0.1:3555/files/bl.png\" width=\"100%\" height=\"100%\">";
 
            
-            //ChangeUpperView();
+
         }
 
-        public async Task<string> GetHTMLForView()
+        // protected override void OnStart()
+        // {
+        //     base.OnStart();
+        //     RunOnUiThread((() =>
+        //     {
+        //         upperWebView.LoadData(bodyStyle + html, "text/html", null);
+        //     }));
+        // }
+
+
+        protected async override void OnResume()
+        {
+            base.OnResume();
+            upperWebView.ClearCache(true);
+            upperWebView.ClearHistory();
+            upperWebView.Reload();
+            await Task.Delay(3000);
+            upperWebView.LoadData(bodyStyle + html, "text/html", null);
+        }
+
+        public  void ChangeUpperView()
+        {
+             
+            //html =  GetHTMLForView();
+            RunOnUiThread((() =>
+            {
+                upperWebView.LoadData(bodyStyle + html, "text/html", null);
+                
+                SetUiFlags();
+            }));
+        }
+
+        public  string GetHTMLForView()
         {
             var data = new StringContent($"\"{AccessData}\"", Encoding.UTF8, "application/json");
-            var response = await _httpClient.PostAsync(ServerURL,  data);
+            var response =  _httpClient.PostAsync(ServerURL, data).Result;
 
-            if(response.IsSuccessStatusCode)
+            if (response.IsSuccessStatusCode)
             {
-                return  await response.Content.ReadAsStringAsync();
+                return  response.Content.ReadAsStringAsync().Result;
             }
+
             return string.Empty;
         }
-        
+
 
         public void HideReceiptWindow()
         {
@@ -148,7 +197,7 @@ namespace WebHostXam.Android
                     }
                 ));
         }
-        
+
         public void OpenShift()
         {
             Preferences.Set(IsOpenShift, "true");
@@ -157,7 +206,7 @@ namespace WebHostXam.Android
                 WindowManagerLayoutParams param = Window.Attributes;
                 param.ScreenBrightness = 1;
                 Window.Attributes = param;
-                
+
                 _black_layout.Visibility = ViewStates.Invisible;
                 SetUiFlags();
             }));
@@ -171,31 +220,20 @@ namespace WebHostXam.Android
                 WindowManagerLayoutParams param = Window.Attributes;
                 param.ScreenBrightness = 0;
                 Window.Attributes = param;
-                
+
                 _black_layout.Visibility = ViewStates.Visible;
                 SetUiFlags();
             }));
         }
 
-        public async void ChangeUpperView()
-        {
-            html = await GetHTMLForView();
-            RunOnUiThread((() =>
-            {
-               //upperWebView.LoadData(view.HTML, "text/html", null);
-              upperWebView.LoadData(html, "text/html", null);
+      
 
-              SetUiFlags();
-            }));
-        }
-        
         public void ChangeBottomView(WindowViewModel view)
         {
             RunOnUiThread((() =>
             {
-               
-               bottomWebView.LoadData(view.HTML, "text/html", null);
-               
+                bottomWebView.LoadData(view.HTML, "text/html", null);
+
                 SetUiFlags();
             }));
         }
@@ -288,21 +326,18 @@ namespace WebHostXam.Android
                     ;
                     receiptWindow.Window.DecorView.SystemUiVisibility =
                         (StatusBarVisibility) (
-                                              
-                                                SystemUiFlags.HideNavigation
-                                               | SystemUiFlags.LayoutFullscreen
-                                               | SystemUiFlags.LayoutHideNavigation
-                                               | SystemUiFlags.Fullscreen
-                                                | SystemUiFlags.LowProfile
-                                                | SystemUiFlags.Immersive
-                                               );
-                       
+                            SystemUiFlags.HideNavigation
+                            | SystemUiFlags.LayoutFullscreen
+                            | SystemUiFlags.LayoutHideNavigation
+                            | SystemUiFlags.Fullscreen
+                            | SystemUiFlags.LowProfile
+                            | SystemUiFlags.Immersive
+                        );
+
                     receiptWindow.Show();
                 }));
             }
         }
-
-  
 
 
         public void Initialize()
@@ -332,12 +367,12 @@ namespace WebHostXam.Android
         protected void SetUiFlags()
         {
             decorView = Window.DecorView;
-            decorView.SystemUiVisibility = (StatusBarVisibility) (  SystemUiFlags.HideNavigation
-                                                                    | SystemUiFlags.LayoutFullscreen
-                                                                    | SystemUiFlags.LayoutHideNavigation
-                                                                    | SystemUiFlags.Fullscreen
-                                                                    | SystemUiFlags.LowProfile
-                                                                    | SystemUiFlags.Immersive);
+            decorView.SystemUiVisibility = (StatusBarVisibility) (SystemUiFlags.HideNavigation
+                                                                  | SystemUiFlags.LayoutFullscreen
+                                                                  | SystemUiFlags.LayoutHideNavigation
+                                                                  | SystemUiFlags.Fullscreen
+                                                                  | SystemUiFlags.LowProfile
+                                                                  | SystemUiFlags.Immersive);
         }
     }
 }

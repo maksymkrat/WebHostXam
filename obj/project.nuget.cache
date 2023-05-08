@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "Klk8HQT/BlfyN+XOO6CYFfusDRWd60hqDKQHNPhUK++L4NDmZFZ3dm+IHRuxqSoWM3HUlbuAnjgt9EorvRgvkg==",
+  "dgSpecHash": "7GlRAZZpLRJAAQqHn6xVk9/pxnvLWvxsZnDX+tI6LD+CQzxsCrBQWdjN19bxd2sbMcQw9khn/+XEKAB2AxAEIw==",
   "success": true,
   "projectFilePath": "D:\\AndroidProjects\\WebHostXam\\WebHostXam.Android.csproj",
   "expectedPackageFiles": [
@@ -97,7 +97,7 @@
     "C:\\Users\\User\\.nuget\\packages\\microsoft.extensions.objectpool\\2.2.0\\microsoft.extensions.objectpool.2.2.0.nupkg.sha512",
     "C:\\Users\\User\\.nuget\\packages\\microsoft.extensions.options\\5.0.0\\microsoft.extensions.options.5.0.0.nupkg.sha512",
     "C:\\Users\\User\\.nuget\\packages\\microsoft.extensions.options.configurationextensions\\5.0.0\\microsoft.extensions.options.configurationextensions.5.0.0.nupkg.sha512",
-    "C:\\Users\\User\\.nuget\\packages\\microsoft.extensions.primitives\\5.0.0\\microsoft.extensions.primitives.5.0.0.nupkg.sha512",
+    "C:\\Users\\User\\.nuget\\packages\\microsoft.extensions.primitives\\5.0.1\\microsoft.extensions.primitives.5.0.1.nupkg.sha512",
     "C:\\Users\\User\\.nuget\\packages\\microsoft.extensions.webencoders\\2.2.0\\microsoft.extensions.webencoders.2.2.0.nupkg.sha512",
     "C:\\Users\\User\\.nuget\\packages\\microsoft.net.http.headers\\2.2.0\\microsoft.net.http.headers.2.2.0.nupkg.sha512",
     "C:\\Users\\User\\.nuget\\packages\\microsoft.win32.registry\\4.5.0\\microsoft.win32.registry.4.5.0.nupkg.sha512",

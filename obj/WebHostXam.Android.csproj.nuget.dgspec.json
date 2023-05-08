@@ -8,7 +8,7 @@
       "version": "1.0.0",
       "restore": {
         "projectUniqueName": "D:\\AndroidProjects\\WebHostXam\\WebHostXam.Android.csproj",
-        "projectName": "WebHostXam.Android.csproj",
+        "projectName": "WebHostXam.Android",
         "projectPath": "D:\\AndroidProjects\\WebHostXam\\WebHostXam.Android.csproj",
         "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
         "outputPath": "D:\\AndroidProjects\\WebHostXam\\obj\\",
@@ -43,6 +43,10 @@
             "Microsoft.AspNetCore.StaticFiles": {
               "target": "Package",
               "version": "[2.2.0, )"
+            },
+            "Microsoft.Extensions.Primitives": {
+              "target": "Package",
+              "version": "[5.0.1, )"
             },
             "System.Net.Http": {
               "target": "Package",
@@ -120,6 +124,10 @@
             "Microsoft.AspNetCore.StaticFiles": {
               "target": "Package",
               "version": "[2.2.0, )"
+            },
+            "Microsoft.Extensions.Primitives": {
+              "target": "Package",
+              "version": "[5.0.1, )"
             },
             "NETStandard.Library": {
               "suppressParent": "All",

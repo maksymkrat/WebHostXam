@@ -33,28 +33,30 @@
         
     </LinearLayout>
     
-    <WebView
-        android:id="@+id/bottomWebView"
-        android:layout_width="1212px"
-        android:layout_height="match_parent"
-        android:layout_marginLeft="708px"
-        android:padding="0px"
-        android:visibility="visible"
-        android:clickable="false"
-        >
-        
-    </WebView>
-
-
-<!--    <VideoView-->
-<!--        android:id="@+id/video"-->
+<!--    <WebView-->
+<!--        android:id="@+id/bottomWebView"-->
 <!--        android:layout_width="1212px"-->
 <!--        android:layout_height="match_parent"-->
-<!--        android:layout_alignParentTop="true"-->
-<!--        android:layout_alignParentBottom="true"-->
-<!--        android:layout_marginLeft="708px">-->
+<!--        android:layout_marginLeft="708px"-->
+<!--        android:padding="0px"-->
+<!--        android:visibility="visible"-->
+<!--        android:clickable="false"-->
+<!--        >-->
+<!--        -->
+<!--    </WebView>-->
 
-<!--    </VideoView>-->
+
+    <VideoView
+        android:id="@+id/video"
+        android:background="@android:color/holo_red_dark"
+       
+        android:layout_width="1212px"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="708px">
+
+    </VideoView>
 
     <LinearLayout
         android:id="@+id/black_layout"

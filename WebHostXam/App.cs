@@ -21,16 +21,18 @@ namespace WebHostXam
         public static WebHostParameters WebHostParameters { get; set; } = new WebHostParameters();
         private const String DEVICE_IP = "device_ip";
         private const String NONE = "none";
-        private const string ServerURLForIp = "http://172.19.100.133:5555/InsertOrUpdateTabletIp";
-        private const string ServerURLForMedia = "http://172.19.100.133:5555/GetMediaFiles";
+        private const string ServerURLForIp = "http://172.19.100.133:5555/InsertOrUpdateTabletIp"; //local
+       private const string ServerURLForMedia = "http://193.193.222.87:5600/GetMediaFiles"; // server prod
+           // private const string ServerURLForMedia = "http://172.19.100.133:5555/GetMediaFiles"; // local
         private const string AccessData = "Hilgrup1289";
         private readonly   HttpClient _httpClient= new HttpClient();
 
         public App()
         {
             InitServerIp();
-            ComparisonIp();
-           DownloadMediaContent();
+          //  ComparisonIp();
+           //DownloadMediaContent();
+           var ip = NetworkHelper.GetIpAddress(); //need delete
 
             new Thread(async () =>
             {
@@ -108,6 +110,7 @@ namespace WebHostXam
 
         private async Task DownloadMediaContent()
         {
+            var ip = NetworkHelper.GetIpAddress(); //need delete
             try
             {
                 var data = new StringContent($"\"{AccessData}\"", Encoding.UTF8, "application/json");

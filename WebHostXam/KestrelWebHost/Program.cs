@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Hosting;
+﻿using System;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 using System.IO;
 using System.Reflection;
@@ -40,6 +41,8 @@ namespace WebHostXam.KestrelWebHost
                 .UseKestrel(options =>
                 {
                     options.Listen(webHostParameters.ServerIpEndpoint);
+                    options.Limits.MaxRequestBodySize = Int32.MaxValue;
+                    options.Limits.MaxResponseBufferSize = Int32.MaxValue;
                 })
                 .UseContentRoot(Directory.GetCurrentDirectory())
                 .UseStartup<Startup>()

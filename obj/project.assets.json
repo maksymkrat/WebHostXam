@@ -1737,7 +1737,7 @@
           }
         }
       },
-      "Microsoft.Extensions.Primitives/5.0.0": {
+      "Microsoft.Extensions.Primitives/5.0.1": {
         "type": "package",
         "dependencies": {
           "System.Buffers": "4.5.1",
@@ -4334,6 +4334,7 @@
         "dependencies": {
           "Microsoft.AspNetCore.Mvc": "2.2.0",
           "Microsoft.AspNetCore.StaticFiles": "2.2.0",
+          "Microsoft.Extensions.Primitives": "5.0.1",
           "Newtonsoft.Json": "13.0.1",
           "Xamarin.Essentials": "1.6.1",
           "Xamarinme.Configuration": "1.0.2",
@@ -5854,10 +5855,10 @@
         "version.txt"
       ]
     },
-    "Microsoft.Extensions.Primitives/5.0.0": {
-      "sha512": "cI/VWn9G1fghXrNDagX9nYaaB/nokkZn0HYAawGaELQrl8InSezfe9OnfPZLcJq3esXxygh3hkq2c3qoV3SDyQ==",
+    "Microsoft.Extensions.Primitives/5.0.1": {
+      "sha512": "5WPSmL4YeP7eW+Vc8XZ4DwjYWBAiSwDV9Hm63JJWcz1Ie3Xjv4KuJXzgCstj48LkLfVCYa7mLcx7y+q6yqVvtw==",
       "type": "package",
-      "path": "microsoft.extensions.primitives/5.0.0",
+      "path": "microsoft.extensions.primitives/5.0.1",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -5870,7 +5871,7 @@
         "lib/netcoreapp3.0/Microsoft.Extensions.Primitives.xml",
         "lib/netstandard2.0/Microsoft.Extensions.Primitives.dll",
         "lib/netstandard2.0/Microsoft.Extensions.Primitives.xml",
-        "microsoft.extensions.primitives.5.0.0.nupkg.sha512",
+        "microsoft.extensions.primitives.5.0.1.nupkg.sha512",
         "microsoft.extensions.primitives.nuspec",
         "useSharedDesignerContext.txt",
         "version.txt"
@@ -10536,6 +10537,7 @@
   "projectFileDependencyGroups": {
     "MonoAndroid,Version=v10.0": [
       "Microsoft.AspNetCore.StaticFiles >= 2.2.0",
+      "Microsoft.Extensions.Primitives >= 5.0.1",
       "System.Net.Http >= 4.3.4",
       "WebHostXam >= 1.0.0",
       "Xamarin.Android.Support.Design >= 28.0.0.3",
@@ -10552,7 +10554,7 @@
     "version": "1.0.0",
     "restore": {
       "projectUniqueName": "D:\\AndroidProjects\\WebHostXam\\WebHostXam.Android.csproj",
-      "projectName": "WebHostXam.Android.csproj",
+      "projectName": "WebHostXam.Android",
       "projectPath": "D:\\AndroidProjects\\WebHostXam\\WebHostXam.Android.csproj",
       "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
       "outputPath": "D:\\AndroidProjects\\WebHostXam\\obj\\",
@@ -10587,6 +10589,10 @@
           "Microsoft.AspNetCore.StaticFiles": {
             "target": "Package",
             "version": "[2.2.0, )"
+          },
+          "Microsoft.Extensions.Primitives": {
+            "target": "Package",
+            "version": "[5.0.1, )"
           },
           "System.Net.Http": {
             "target": "Package",
