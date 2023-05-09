@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Net.Http;
 using Newtonsoft.Json;
 using WebHostXam.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -13,12 +14,17 @@ namespace WebHostXam.Managers
         public Action ActionOpenShift { get; set; }
         public Action ActionCloseShift { get; set; }
         
+        private const string IS_OPEN_SHIFT_KEY = "IsOpenShift";
+        private const string AccessData = "Hilgrup1289";
+        private const string ServerURL = "http://193.193.222.87:5600/GetHTMLWindowView";
+        private  HttpClient httpClient;
+        
        
         private static WindowViewManager _viewManager;
 
         private WindowViewManager()
         {
-            
+            httpClient = new HttpClient(); 
         }
 
         public static WindowViewManager GetInstance()
@@ -69,6 +75,26 @@ namespace WebHostXam.Managers
         public WindowViewModel DeserializeWindowVewData(string data)
         {
             return JsonConvert.DeserializeObject<WindowViewModel>(data);
+        }
+        
+        public  string GetHTMLForView()
+        {
+            try
+            {
+                var data = new StringContent($"\"{AccessData}\"", System.Text.Encoding.UTF8, "application/json");
+                var response =  httpClient.PostAsync(ServerURL,  data).Result;
+
+                if(response.IsSuccessStatusCode)
+                {
+                    return   response.Content.ReadAsStringAsync().Result;
+                }
+                return string.Empty;
+            }
+            catch (Exception e)
+            {
+                return String.Empty;
+            }
+           
         }
         
     }

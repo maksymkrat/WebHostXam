@@ -31,7 +31,7 @@ namespace WebHostXam
         {
             InitServerIp();
           //  ComparisonIp();
-           //DownloadMediaContent();
+          //   DownloadMediaContent();
            var ip = NetworkHelper.GetIpAddress(); //need delete
 
             new Thread(async () =>
@@ -128,7 +128,7 @@ namespace WebHostXam
                     FileInfo fileInfo = new FileInfo($"/storage/emulated/0/Download/{file.FileName}.{file.FileExtension}");
                     using (Stream stream = fileInfo.OpenWrite())
                     {
-                        stream.Write(bytes,0 ,bytes.Length);
+                        await stream.WriteAsync(bytes,0 ,bytes.Length);
                         stream.Close();
                     }
                 }

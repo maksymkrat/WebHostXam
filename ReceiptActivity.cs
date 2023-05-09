@@ -34,7 +34,7 @@ namespace WebHostXam.Android
             receiptManager = ReceiptManager.GetInstance();
 
             // Set our view from the "main" layout resource
-            SetContentView(Resource.Layout.activity_receipt);
+            //SetContentView(Resource.Layout.activity_receipt);
             _layout = FindViewById<LinearLayout>(Resource.Id.id_receipt_activity);
             _layout.SetGravity(GravityFlags.Top);
             

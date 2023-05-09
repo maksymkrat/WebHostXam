@@ -76,9 +76,10 @@
         <AndroidResource Include="Resources\layout\activity_main.axml">
             <SubType>Designer</SubType>
         </AndroidResource>
-        <AndroidResource Include="Resources\layout\activity_receipt.axml" />
+        <AndroidResource Include="Resources\layout\activity_receipt_offers.axml" />
         <AndroidResource Include="Resources\layout\receipt_item.axml" />
-        <AndroidResource Include="Resources\layout\test_grid.axml" />
+        <AndroidResource Include="Resources\layout\activity_receipt.axml" />
+        <AndroidResource Include="Resources\layout\test.xml" />
         <AndroidResource Include="Resources\layout\test_vertical.axml" />
         <AndroidResource Include="Resources\values\colors.xml" />
         <AndroidResource Include="Resources\values\ic_launcher_background.xml" />

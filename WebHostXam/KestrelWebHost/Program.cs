@@ -41,8 +41,10 @@ namespace WebHostXam.KestrelWebHost
                 .UseKestrel(options =>
                 {
                     options.Listen(webHostParameters.ServerIpEndpoint);
-                    options.Limits.MaxRequestBodySize = Int32.MaxValue;
-                    options.Limits.MaxResponseBufferSize = Int32.MaxValue;
+                    options.Limits.MaxRequestBodySize = 9 * 1024 * 1024;
+                    options.Limits.MaxResponseBufferSize = 9 * 1024 * 1024;
+
+
                 })
                 .UseContentRoot(Directory.GetCurrentDirectory())
                 .UseStartup<Startup>()

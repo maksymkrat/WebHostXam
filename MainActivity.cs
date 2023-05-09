@@ -34,12 +34,14 @@ namespace WebHostXam.Android
         LinearLayout receiptLayout;
         ListView viewReceiptItems;
         TextView textDiscount;
+        TextView textDiscountInUAN;
         TextView textReceiptAmount;
         ReceiptManager receiptManager;
         WindowViewManager viewManager;
         ReceiptItemAdapter adapter;
         Dialog receiptWindow = null;
-
+        
+        //eaxta offers
         ExtraOffer Offer1 = null;
         ExtraOffer Offer2 = null;
         ImageView offerImg1;
@@ -52,6 +54,14 @@ namespace WebHostXam.Android
         TextView offerDescr2;
         TextView offerOldPrice2;
         TextView offerNewPrice2;
+        //card info
+        private TextView fourLastPhoneDigits;
+        private TextView cardNumber;
+        private TextView wasUAN;
+        private TextView accruedUAN;
+        private TextView withdrawnUAN;
+        private TextView remainderUAN;
+
 
         private WebView upperWebView;
         private WebView bottomWebView;
@@ -65,7 +75,6 @@ namespace WebHostXam.Android
         private ReceiptModel _receipt;
         private LinearLayout _black_layout;
         private string html;
-        
 
 
         private const string bodyStyle = "<style>body {margin: 0; padding: 0;}</style>";
@@ -100,13 +109,13 @@ namespace WebHostXam.Android
             upperWebView = FindViewById<WebView>(Resource.Id.upperWebView);
             upperWebView.Settings.JavaScriptEnabled = true;
             upperWebView.ClearCache(true);
-            
+
 
             _receipt_plcace = FindViewById<LinearLayout>(Resource.Id.receipt_place);
             _receipt_plcace.Clickable = false;
             _receipt_plcace.Click += (sender, args) => { return; };
 
-           // bottomWebView = FindViewById<WebView>(Resource.Id.bottomWebView);
+            // bottomWebView = FindViewById<WebView>(Resource.Id.bottomWebView);
             _black_layout = FindViewById<LinearLayout>(Resource.Id.black_layout);
             _videoView = FindViewById<VideoView>(Resource.Id.video);
             _videoView.SetBackgroundColor(Color.Red);
@@ -127,13 +136,13 @@ namespace WebHostXam.Android
             // }
 
             //html = System.IO.File.ReadAllText(@"/storage/emulated/0/Data/test2.html");
-            
+
             //html =  String.Empty;//GetHTMLForView();
-            html = "<video autoplay muted loop ><source src=\"http://127.0.0.1:3555/files/vid2.mp4\" type=\"video/mp4\"></video>";
+            //html = "<video autoplay muted loop ><source src=\"http://127.0.0.1:3555/files/vid2.mp4\" type=\"video/mp4\"></video>";
             //html = "<img src=\"http://127.0.0.1:3555/files/bl.png\" width=\"100%\" height=\"100%\">";
 
-           
-
+           // html = viewManager.GetHTMLForView();
+           html = "";
         }
 
         // protected override void OnStart()
@@ -156,26 +165,25 @@ namespace WebHostXam.Android
             upperWebView.LoadData(bodyStyle + html, "text/html", null);
         }
 
-        public  void ChangeUpperView()
+        public void ChangeUpperView()
         {
-             
             //html =  GetHTMLForView();
             RunOnUiThread((() =>
             {
                 upperWebView.LoadData(bodyStyle + html, "text/html", null);
-                
+
                 SetUiFlags();
             }));
         }
 
-        public  string GetHTMLForView()
+        public string GetHTMLForView()
         {
             var data = new StringContent($"\"{AccessData}\"", Encoding.UTF8, "application/json");
-            var response =  _httpClient.PostAsync(ServerURL, data).Result;
+            var response = _httpClient.PostAsync(ServerURL, data).Result;
 
             if (response.IsSuccessStatusCode)
             {
-                return  response.Content.ReadAsStringAsync().Result;
+                return response.Content.ReadAsStringAsync().Result;
             }
 
             return string.Empty;
@@ -226,7 +234,6 @@ namespace WebHostXam.Android
             }));
         }
 
-      
 
         public void ChangeBottomView(WindowViewModel view)
         {
@@ -279,43 +286,14 @@ namespace WebHostXam.Android
                     // //receipt setup
                     if (receiptWindow == null)
                         receiptWindow = new Dialog(this, Resource.Style.Theme_Transparent);
-
-                    receiptWindow.SetContentView(Resource.Layout.activity_receipt);
-
-                    _layout = receiptWindow.FindViewById<RelativeLayout>(Resource.Id.id_receipt_activity);
-
-                    viewReceiptItems = receiptWindow.FindViewById<ListView>(Resource.Id.id_list_items);
-                    textDiscount = receiptWindow.FindViewById<TextView>(Resource.Id.id_discount);
-                    textReceiptAmount = receiptWindow.FindViewById<TextView>(Resource.Id.id_receipt_amount);
-
-                    adapter = new ReceiptItemAdapter(this, receipt.items);
-                    viewReceiptItems.Adapter = adapter;
-                    textDiscount.Text = $"Знижка по карті: {receipt.Discount}%";
-                    textReceiptAmount.Text = $"Сума: {receipt.Amount.ToString("N2")}";
-
-                    //extra offer
-
-                    offerImg1 = receiptWindow.FindViewById<ImageView>(Resource.Id.Offer_img_1);
-                    offerName1 = receiptWindow.FindViewById<TextView>(Resource.Id.offer_name_1);
-                    offerDescr1 = receiptWindow.FindViewById<TextView>(Resource.Id.offer_descr_1);
-                    offerOldPrice1 = receiptWindow.FindViewById<TextView>(Resource.Id.offer_old_price_1);
-                    offerNewPrice1 = receiptWindow.FindViewById<TextView>(Resource.Id.offer_new_price_1);
-                    offerName1.Text = receipt.Offer1.Name;
-                    offerDescr1.Text = receipt.Offer1.Description;
-                    offerOldPrice1.Text = receipt.Offer1.OldPrice.ToString("N2");
-                    offerNewPrice1.Text = receipt.Offer1.NewPrice.ToString("N2");
-                    offerImg1.SetImageBitmap(ConvertStringBase64ToBitmap(receipt.Offer1.ImgBase64Str)); // if null TODO
-
-                    offerImg2 = receiptWindow.FindViewById<ImageView>(Resource.Id.offer_img_2);
-                    offerName2 = receiptWindow.FindViewById<TextView>(Resource.Id.offer_name_2);
-                    offerDescr2 = receiptWindow.FindViewById<TextView>(Resource.Id.offer_descr_2);
-                    offerOldPrice2 = receiptWindow.FindViewById<TextView>(Resource.Id.offer_old_price_2);
-                    offerNewPrice2 = receiptWindow.FindViewById<TextView>(Resource.Id.offer_new_price_2);
-                    offerName2.Text = receipt.Offer2.Name;
-                    offerDescr2.Text = receipt.Offer2.Description;
-                    offerOldPrice2.Text = receipt.Offer2.OldPrice.ToString("N2");
-                    offerNewPrice2.Text = receipt.Offer2.NewPrice.ToString("N2");
-                    offerImg2.SetImageBitmap(ConvertStringBase64ToBitmap(receipt.Offer2.ImgBase64Str)); // if null TODO
+                    if (String.IsNullOrEmpty(receipt.Offer1.Name) || String.IsNullOrEmpty(receipt.Offer2.Name))
+                    {
+                        CreateReceipt(receipt);
+                    }
+                    else
+                    {
+                        CreatReceiptAndExtraOffers(receipt);
+                    }
 
 
                     //window seutup
@@ -337,6 +315,68 @@ namespace WebHostXam.Android
                     receiptWindow.Show();
                 }));
             }
+        }
+
+        public void CreateReceipt(ReceiptModel receipt)
+        {
+            receiptWindow.SetContentView(Resource.Layout.activity_receipt);
+            _layout = receiptWindow.FindViewById<RelativeLayout>(Resource.Id.id_receipt_activity);
+            viewReceiptItems = receiptWindow.FindViewById<ListView>(Resource.Id.id_list_items);
+            textReceiptAmount = receiptWindow.FindViewById<TextView>(Resource.Id.id_receipt_amount);
+            adapter = new ReceiptItemAdapter(this, receipt.items);
+            viewReceiptItems.Adapter = adapter;
+            textReceiptAmount.Text = $"{receipt.Amount.ToString("N2")} грн";
+            //card info
+
+            fourLastPhoneDigits = receiptWindow.FindViewById<TextView>(Resource.Id.id_4_phone_digits);
+            cardNumber = receiptWindow.FindViewById<TextView>(Resource.Id.id_card_number);
+            wasUAN = receiptWindow.FindViewById<TextView>(Resource.Id.id_was_uan);
+            accruedUAN = receiptWindow.FindViewById<TextView>(Resource.Id.id_accrued_uan);
+            withdrawnUAN = receiptWindow.FindViewById<TextView>(Resource.Id.id_withdrawn_uan);
+            remainderUAN = receiptWindow.FindViewById<TextView>(Resource.Id.id_remainder_uan);
+
+            fourLastPhoneDigits.Text = $"(***) *** ** **";
+            cardNumber.Text = "по карті № 000000000000";
+            wasUAN.Text =       $"Було ............. 00.00 грн";
+            accruedUAN.Text =   $"Нараховано ....... 00.00 грн";
+            withdrawnUAN.Text = $"Списано .......... 00.00 грн";
+            remainderUAN.Text = $"залишок .......... 00.00 грн";
+            
+        }
+
+        public void CreatReceiptAndExtraOffers(ReceiptModel receipt)
+        {
+            receiptWindow.SetContentView(Resource.Layout.activity_receipt_offers);
+            _layout = receiptWindow.FindViewById<RelativeLayout>(Resource.Id.id_receipt_activity);
+            viewReceiptItems = receiptWindow.FindViewById<ListView>(Resource.Id.id_list_items);
+            textReceiptAmount = receiptWindow.FindViewById<TextView>(Resource.Id.id_receipt_amount);
+            adapter = new ReceiptItemAdapter(this, receipt.items);
+            viewReceiptItems.Adapter = adapter;
+            textReceiptAmount.Text = $"Сума: {receipt.Amount.ToString("N2")}";
+
+            //extra offer
+
+            offerImg1 = receiptWindow.FindViewById<ImageView>(Resource.Id.offer_img_1);
+            offerName1 = receiptWindow.FindViewById<TextView>(Resource.Id.offer_name_1);
+            offerDescr1 = receiptWindow.FindViewById<TextView>(Resource.Id.offer_descr_1);
+            offerOldPrice1 = receiptWindow.FindViewById<TextView>(Resource.Id.offer_old_price_1);
+            offerNewPrice1 = receiptWindow.FindViewById<TextView>(Resource.Id.offer_new_price_1);
+            offerName1.Text = receipt.Offer1.Name;
+            offerDescr1.Text = receipt.Offer1.Description;
+            offerOldPrice1.Text = receipt.Offer1.OldPrice.ToString("N2");
+            offerNewPrice1.Text = receipt.Offer1.NewPrice.ToString("N2");
+            offerImg1.SetImageBitmap(ConvertStringBase64ToBitmap(receipt.Offer1.ImgBase64Str)); // if null TODO
+
+            offerImg2 = receiptWindow.FindViewById<ImageView>(Resource.Id.offer_img_2);
+            offerName2 = receiptWindow.FindViewById<TextView>(Resource.Id.offer_name_2);
+            offerDescr2 = receiptWindow.FindViewById<TextView>(Resource.Id.offer_descr_2);
+            offerOldPrice2 = receiptWindow.FindViewById<TextView>(Resource.Id.offer_old_price_2);
+            offerNewPrice2 = receiptWindow.FindViewById<TextView>(Resource.Id.offer_new_price_2);
+            offerName2.Text = receipt.Offer2.Name;
+            offerDescr2.Text = receipt.Offer2.Description;
+            offerOldPrice2.Text = receipt.Offer2.OldPrice.ToString("N2");
+            offerNewPrice2.Text = receipt.Offer2.NewPrice.ToString("N2");
+            offerImg2.SetImageBitmap(ConvertStringBase64ToBitmap(receipt.Offer2.ImgBase64Str)); // if null TODO
         }
 
 
