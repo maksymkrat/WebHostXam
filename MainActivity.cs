@@ -334,13 +334,16 @@ namespace WebHostXam.Android
             accruedUAN = receiptWindow.FindViewById<TextView>(Resource.Id.id_accrued_uan);
             withdrawnUAN = receiptWindow.FindViewById<TextView>(Resource.Id.id_withdrawn_uan);
             remainderUAN = receiptWindow.FindViewById<TextView>(Resource.Id.id_remainder_uan);
-
+            
             fourLastPhoneDigits.Text = $"(***) *** ** **";
-            cardNumber.Text = "по карті № 000000000000";
-            wasUAN.Text =       $"Було ............. 00.00 грн";
-            accruedUAN.Text =   $"Нараховано ....... 00.00 грн";
-            withdrawnUAN.Text = $"Списано .......... 00.00 грн";
-            remainderUAN.Text = $"залишок .......... 00.00 грн";
+            var phoneDigitsArr = receipt.CardInfo.FourLastPhoneDigits.Split("");
+            if(phoneDigitsArr.Length >3)
+                fourLastPhoneDigits.Text = $"(***) *** {phoneDigitsArr[0]}{phoneDigitsArr[1]} {phoneDigitsArr[2]}{phoneDigitsArr[3]}";
+            cardNumber.Text = $"по карті № {receipt.CardInfo.CardNumber}";
+            wasUAN.Text =       $"Було ............. {receipt.CardInfo.WasUAN.ToString("N2")} грн";
+            accruedUAN.Text =   $"Нараховано ....... {receipt.CardInfo.AccruedUAN.ToString("N2")} грн";
+            withdrawnUAN.Text = $"Списано .......... {receipt.CardInfo.WithdrawnUAN.ToString("N2")} грн";
+            remainderUAN.Text = $"залишок .......... {receipt.CardInfo.RemainderUAN.ToString("N2")} грн";
             
         }
 
@@ -363,11 +366,14 @@ namespace WebHostXam.Android
             remainderUAN = receiptWindow.FindViewById<TextView>(Resource.Id.id_remainder_uan);
 
             fourLastPhoneDigits.Text = $"(***) *** ** **";
-            cardNumber.Text = "по карті № 000000000000";
-            wasUAN.Text =       $"Було ............. 00.00 грн";
-            accruedUAN.Text =   $"Нараховано ....... 00.00 грн";
-            withdrawnUAN.Text = $"Списано .......... 00.00 грн";
-            remainderUAN.Text = $"залишок .......... 00.00 грн";
+            var phoneDigitsArr = receipt.CardInfo.FourLastPhoneDigits.ToCharArray();
+            if(phoneDigitsArr.Length >3)
+                fourLastPhoneDigits.Text = $"(***) *** {phoneDigitsArr[0]}{phoneDigitsArr[1]} {phoneDigitsArr[2]}{phoneDigitsArr[3]}";
+            cardNumber.Text = $"по карті № {receipt.CardInfo.CardNumber}";
+            wasUAN.Text =       $"Було ............. {receipt.CardInfo.WasUAN.ToString("N2")} грн";
+            accruedUAN.Text =   $"Нараховано ....... {receipt.CardInfo.AccruedUAN.ToString("N2")} грн";
+            withdrawnUAN.Text = $"Списано .......... {receipt.CardInfo.WithdrawnUAN.ToString("N2")} грн";
+            remainderUAN.Text = $"залишок .......... {receipt.CardInfo.RemainderUAN.ToString("N2")} грн";
 
             //extra offer
 
