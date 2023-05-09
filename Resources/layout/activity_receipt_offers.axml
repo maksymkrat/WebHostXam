@@ -13,8 +13,7 @@
         android:layout_height="708px"
         android:layout_alignParentBottom="true"
         android:background="@android:color/white"
-
-        android:rotation="-90"
+       android:rotation="-90"
         android:translationX="-186px"
         android:translationY="-186px">
 
@@ -24,43 +23,191 @@
             android:layout_weight="1"
             android:orientation="vertical">
 
-            <ListView
-                android:id="@+id/id_list_items"
+            <LinearLayout
+                android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="350px"
-                android:divider="@null"
-                android:dividerHeight="0dp"></ListView>
+                android:layout_height="match_parent"
+                android:layout_marginLeft="40px"
+                android:layout_marginRight="40px"
+               android:layout_marginTop="40px"
+                android:layout_marginBottom="30px">
 
-            <TextView
-                android:id="@+id/id_discount"
-                android:layout_width="match_parent"
-                android:layout_height="100px"
-                android:layout_marginTop="20px"
-                android:layout_marginRight="160px"
-                android:gravity="right"
-                android:paddingTop="20px"
-                android:text="Знижка по карті: 0%"
-                android:textColor="@android:color/black"
-                android:textSize="30px"
-                android:textStyle="bold"></TextView>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="ВАШ ЧЕК"
+                    android:textColor="#1a1a1a"
+                    android:textSize="30px"
+                    android:textStyle="bold"
+                    android:paddingLeft="5px"></TextView>
 
-            <TextView
-                android:id="@+id/id_receipt_amount"
-                android:layout_width="match_parent"
-                android:layout_height="100px"
-                android:layout_marginTop="20px"
-                android:layout_marginRight="160px"
-                android:gravity="right"
-                android:text="Сума: 0"
-                android:textColor="@android:color/black"
-                android:textSize="40px"
-                android:textStyle="bold"></TextView>
+                <ListView
+                    android:id="@+id/id_list_items"
+                    android:layout_width="match_parent"
+                    android:layout_height="300px"
+                    android:layout_marginTop="25px"
+                    android:divider="@null"
+                    android:dividerHeight="0dp">
+                </ListView>
+
+
+
+                <LinearLayout
+                    android:layout_marginTop="5px"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:layout_width="0px"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textColor="#1a1a1a"
+                            android:textSize="30px"
+                            android:text="До сплати"
+                            android:gravity="left"
+                            android:textStyle="bold"
+                            android:paddingLeft="5px">
+
+                        </TextView>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0px"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/id_receipt_amount"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textColor="#1a1a1a"
+                            android:textSize="30px"
+                            android:text="2555.55 грн"
+                            android:gravity="right"
+                            android:textStyle="bold">
+
+                        </TextView>
+                    </LinearLayout>
+                </LinearLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="3px"
+                    android:layout_marginTop="20px"
+                    android:background="#1a1a1a"></View>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <LinearLayout
+                        android:layout_width="0px"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="bottom"
+                        android:layout_marginLeft="5px"
+                        android:orientation="vertical">
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="left"
+                            android:textColor="#333333"
+                            android:text="Номер телефону покупця"
+                            android:textSize="16px">
+                        </TextView>
+                        <TextView
+                            android:id="@+id/id_4_phone_digits"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="left"
+                            android:textColor="#333333"
+                            android:text="(***) *** ** **"
+                            android:textSize="16px">
+                        </TextView>
+                        <TextView
+                            android:layout_marginTop="3px"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="left"
+                            android:textColor="#333333"
+                            android:text="Баланс накопичених грошей"
+                            android:textSize="16px">
+                        </TextView>
+                        <TextView
+                            android:id="@+id/id_card_number"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="left"
+                            android:textColor="#333333"
+                            android:text="по карті № 000000000000"
+                            android:textSize="16px">
+                        </TextView>
+                        <TextView
+                            android:id="@+id/id_was_uan"
+                            android:layout_marginTop="3px"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="left"
+                            android:textColor="#333333"
+                            android:text="Було........."
+                            android:textSize="16px">
+                        </TextView>
+                        <TextView
+                            android:id="@+id/id_accrued_uan"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="left"
+                            android:textColor="#333333"
+                            android:text="Нараховано..........."
+                            android:textSize="16px">
+                        </TextView>
+                        <TextView
+                            android:id="@+id/id_withdrawn_uan"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="left"
+                            android:textColor="#333333"
+                            android:text="Списано..........."
+                            android:textSize="16px">
+                        </TextView>
+                        <TextView
+                            android:id="@+id/id_remainder_uan"
+                            android:layout_marginTop="3px"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="left"
+                            android:textColor="#333333"
+                            android:text="Залишок ..........."
+                            android:textSize="16px">
+                        </TextView>
+
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="0px"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                    </LinearLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+            
+
+           
+
+            
         </LinearLayout>
 
         <View
             android:layout_width="3px"
             android:layout_height="match_parent"
-            android:background="@android:color/black"></View>
+            android:background="#1a1a1a"></View>
 
         <LinearLayout
             android:background="#E4EEFF"
@@ -68,12 +215,17 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:orientation="vertical"
-            android:paddingLeft="30px">
+            android:paddingLeft="35px"
+            android:paddingRight="35px"
+            >
 
             <TextView
-                android:layout_width="wrap_content"
+                android:paddingTop="35px"
+                android:paddingBottom="5px"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="ДОДАТКОВО ПРОПОНУЄМО"
+                android:gravity="center"
                 android:background="#026939"
                 android:textColor="#fff"
                 android:textSize="32px"
@@ -86,15 +238,16 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30px"
                 android:orientation="vertical"
-                android:paddingLeft="20px">
+                >
 
                 <TextView
                     android:id="@+id/offer_name_1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Вата"
-                    android:textColor="@android:color/black"
-                    android:textSize="47px"
+                    android:textColor="#1a1a1a"
+                    android:textSize="30px"
+                    android:maxHeight="40px"
                     android:textStyle="bold"></TextView>
 
                 <TextView
@@ -103,9 +256,12 @@
                     android:layout_height="wrap_content"
                     android:text="оао іоо іва ві щщіщіщоа"
                     android:textColor="#262626"
-                    android:textSize="36px"></TextView>
+                    android:textSize="23px"
+                    android:maxHeight="33px"></TextView>
 
                 <LinearLayout
+                    android:layout_marginTop="15px"
+                    android:layout_marginLeft="10px"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
                     
@@ -113,7 +269,9 @@
                         <ImageView
                             android:id="@+id/offer_img_1"
                             android:layout_width="300px"
+                            android:maxWidth="300px"
                             android:layout_height="190px"
+                            android:maxHeight="190px"
                             android:src="@drawable/cotton">
                         </ImageView>
 
@@ -128,18 +286,20 @@
                             android:id="@+id/offer_old_price_1"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="123.00"
-                            android:textColor="@android:color/black"
-                            android:textSize="40px"
+                            android:text="123.00 грн"
+                            android:gravity="right"
+                            android:textColor="#FE614C"
+                            android:textSize="25px"
                             android:textStyle="bold"></TextView>
 
                         <TextView
                             android:id="@+id/offer_new_price_1"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="456.00"
-                            android:textColor="@android:color/black"
-                            android:textSize="40px"
+                            android:text="456.00 грн"
+                            android:gravity="right"
+                            android:textColor="#1a1a1a"
+                            android:textSize="25px"
                             android:textStyle="bold"></TextView>
 
 
@@ -147,21 +307,21 @@
                 </LinearLayout>
 
             </LinearLayout>
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30px"
                 android:orientation="vertical"
-                android:paddingLeft="20px">
+                >
 
                 <TextView
                     android:id="@+id/offer_name_2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Вата"
-                    android:textColor="@android:color/black"
-                    android:textSize="47px"
+                    android:textColor="#1a1a1a"
+                    android:textSize="30px"
+                    android:maxHeight="40px"
                     android:textStyle="bold"></TextView>
 
                 <TextView
@@ -170,17 +330,22 @@
                     android:layout_height="wrap_content"
                     android:text="оао іоо іва ві щщіщіщоа"
                     android:textColor="#262626"
-                    android:textSize="36px"></TextView>
+                    android:textSize="23px"
+                    android:maxHeight="33px"></TextView>
 
                 <LinearLayout
+                    android:layout_marginLeft="10px"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="15px">
 
 
                     <ImageView
                         android:id="@+id/offer_img_2"
                         android:layout_width="300px"
+                        android:maxWidth="300px"
                         android:layout_height="190px"
+                        android:maxHeight="190px"
                         android:src="@drawable/cotton">
                     </ImageView>
 
@@ -195,18 +360,20 @@
                             android:id="@+id/offer_old_price_2"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="123.00"
-                            android:textColor="@android:color/black"
-                            android:textSize="40px"
+                            android:text="123.00 грн"
+                            android:gravity="right"
+                            android:textColor="#FE614C"
+                            android:textSize="25px"
                             android:textStyle="bold"></TextView>
 
                         <TextView
                             android:id="@+id/offer_new_price_2"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="456.00"
-                            android:textColor="@android:color/black"
-                            android:textSize="40px"
+                            android:text="456.00 грн"
+                            android:gravity="right"
+                            android:textColor="#1a1a1a"
+                            android:textSize="25px"
                             android:textStyle="bold"></TextView>
 
 
@@ -214,9 +381,8 @@
                 </LinearLayout>
 
             </LinearLayout>
-
-           
-
+            
+            
 
         </LinearLayout>
 

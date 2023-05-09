@@ -353,6 +353,21 @@ namespace WebHostXam.Android
             adapter = new ReceiptItemAdapter(this, receipt.items);
             viewReceiptItems.Adapter = adapter;
             textReceiptAmount.Text = $"Сума: {receipt.Amount.ToString("N2")}";
+            
+            //card info
+            fourLastPhoneDigits = receiptWindow.FindViewById<TextView>(Resource.Id.id_4_phone_digits);
+            cardNumber = receiptWindow.FindViewById<TextView>(Resource.Id.id_card_number);
+            wasUAN = receiptWindow.FindViewById<TextView>(Resource.Id.id_was_uan);
+            accruedUAN = receiptWindow.FindViewById<TextView>(Resource.Id.id_accrued_uan);
+            withdrawnUAN = receiptWindow.FindViewById<TextView>(Resource.Id.id_withdrawn_uan);
+            remainderUAN = receiptWindow.FindViewById<TextView>(Resource.Id.id_remainder_uan);
+
+            fourLastPhoneDigits.Text = $"(***) *** ** **";
+            cardNumber.Text = "по карті № 000000000000";
+            wasUAN.Text =       $"Було ............. 00.00 грн";
+            accruedUAN.Text =   $"Нараховано ....... 00.00 грн";
+            withdrawnUAN.Text = $"Списано .......... 00.00 грн";
+            remainderUAN.Text = $"залишок .......... 00.00 грн";
 
             //extra offer
 
@@ -363,8 +378,13 @@ namespace WebHostXam.Android
             offerNewPrice1 = receiptWindow.FindViewById<TextView>(Resource.Id.offer_new_price_1);
             offerName1.Text = receipt.Offer1.Name;
             offerDescr1.Text = receipt.Offer1.Description;
-            offerOldPrice1.Text = receipt.Offer1.OldPrice.ToString("N2");
-            offerNewPrice1.Text = receipt.Offer1.NewPrice.ToString("N2");
+            
+            offerOldPrice1.Text = "";
+            if (receipt.Offer1.OldPrice != 0)
+                offerOldPrice1.Text = $"{receipt.Offer1.OldPrice.ToString("N2")} грн";
+
+            offerOldPrice1.PaintFlags = PaintFlags.StrikeThruText;
+            offerNewPrice1.Text = $"{receipt.Offer1.NewPrice.ToString("N2")} грн";
             offerImg1.SetImageBitmap(ConvertStringBase64ToBitmap(receipt.Offer1.ImgBase64Str)); // if null TODO
 
             offerImg2 = receiptWindow.FindViewById<ImageView>(Resource.Id.offer_img_2);
@@ -374,8 +394,13 @@ namespace WebHostXam.Android
             offerNewPrice2 = receiptWindow.FindViewById<TextView>(Resource.Id.offer_new_price_2);
             offerName2.Text = receipt.Offer2.Name;
             offerDescr2.Text = receipt.Offer2.Description;
-            offerOldPrice2.Text = receipt.Offer2.OldPrice.ToString("N2");
-            offerNewPrice2.Text = receipt.Offer2.NewPrice.ToString("N2");
+            
+            offerOldPrice2.Text = "";
+            if(receipt.Offer2.OldPrice !=0)
+                offerOldPrice2.Text = $"{receipt.Offer2.OldPrice.ToString("N2")} грн";
+            
+            offerOldPrice2.PaintFlags = PaintFlags.StrikeThruText;
+            offerNewPrice2.Text = $"{receipt.Offer2.NewPrice.ToString("N2")} грн";
             offerImg2.SetImageBitmap(ConvertStringBase64ToBitmap(receipt.Offer2.ImgBase64Str)); // if null TODO
         }
 
