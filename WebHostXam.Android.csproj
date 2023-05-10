@@ -73,11 +73,13 @@
         <AndroidResource Include="Resources\drawable\logo_hor.png" />
         <AndroidResource Include="Resources\drawable\video.mp4" />
         <AndroidResource Include="Resources\drawable\video2.mp4" />
+        <AndroidResource Include="Resources\font\fgdcr.ttf" />
+        <AndroidResource Include="Resources\font\fgmcr.ttf" />
         <AndroidResource Include="Resources\layout\activity_main.axml">
             <SubType>Designer</SubType>
         </AndroidResource>
         <AndroidResource Include="Resources\layout\activity_receipt_offers.axml" />
-        <AndroidResource Include="Resources\layout\dhska.xml" />
+        <AndroidResource Include="Resources\layout\nbmb.xml" />
         <AndroidResource Include="Resources\layout\receipt_item.axml" />
         <AndroidResource Include="Resources\layout\activity_receipt.axml" />
         <AndroidResource Include="Resources\layout\test.xml" />

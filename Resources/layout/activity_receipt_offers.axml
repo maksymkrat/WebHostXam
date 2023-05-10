@@ -36,9 +36,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="ВАШ ЧЕК"
-                    android:textColor="#1a1a1a"
-                    android:textSize="30px"
-                    android:textStyle="bold"
+                    android:textSize="40px"
+                    android:theme="@style/AppTheme.Font_FGDCR"
                     android:paddingLeft="5px"></TextView>
 
                 <ListView
@@ -51,7 +50,7 @@
 
 
                 <LinearLayout
-                    android:layout_marginTop="5px"
+                    android:layout_marginTop="8px"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
@@ -64,11 +63,10 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:textColor="#1a1a1a"
                             android:textSize="30px"
                             android:text="До сплати"
                             android:gravity="left"
-                            android:textStyle="bold"
+                            android:theme="@style/AppTheme.Font_FGDCR"
                             android:paddingLeft="5px">
 
                         </TextView>
@@ -84,11 +82,10 @@
                             android:id="@+id/id_receipt_amount"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:textColor="#1a1a1a"
                             android:textSize="30px"
                             android:text="2555.55 грн"
                             android:gravity="right"
-                            android:textStyle="bold">
+                            android:theme="@style/AppTheme.Font_FGDCR">
 
                         </TextView>
                     </LinearLayout>
@@ -116,52 +113,54 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="left"
-                            android:textColor="#333333"
                             android:text="Номер телефону покупця"
-                            android:textSize="16px"></TextView>
+                            android:textSize="17px"
+                            android:theme="@style/AppTheme.Font_FGMCR"></TextView>
 
                         <TextView
                             android:id="@+id/id_4_phone_digits"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="left"
-                            android:textColor="#333333"
+                            android:theme="@style/AppTheme.Font_FGMCR"
                             android:text="(***) *** ** **"
-                            android:textSize="16px"></TextView>
+                            android:textSize="17px"></TextView>
 
                         <TextView
-                            android:layout_marginTop="3px"
+                            android:layout_marginTop="4px"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="left"
-                            android:textColor="#333333"
+                            android:theme="@style/AppTheme.Font_FGMCR"
                             android:text="Баланс накопичених грошей"
-                            android:textSize="16px"></TextView>
+                            android:textSize="17px"></TextView>
 
                         <TextView
                             android:id="@+id/id_card_number"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="left"
-                            android:textColor="#333333"
+                            android:theme="@style/AppTheme.Font_FGMCR"
                             android:text="по карті № 000000000000"
-                            android:textSize="16px"></TextView>
+                            android:textSize="17px"></TextView>
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content">
+
                             <LinearLayout
                                 android:layout_width="0px"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
                                 android:orientation="vertical">
+
                                 <TextView
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="4px"
-                                    android:text="Було ......................................................................................................."
-                                    android:textColor="#333333"
-                                    android:textSize="16px"
+                                    android:text="Було ....................................................................................................."
+                                    android:theme="@style/AppTheme.Font_FGMCR"
+                                    android:textSize="17px"
                                     android:maxHeight="21px">
 
                                 </TextView>
@@ -172,33 +171,36 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:gravity="right">
+
                                 <TextView
                                     android:id="@+id/id_was_uan"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="4px"
-                                    android:textColor="#333333"
+                                    android:theme="@style/AppTheme.Font_FGMCR"
                                     android:text="10.1 грн"
-                                    android:textSize="16px"
-                                    ></TextView>
+                                    android:textSize="17px"></TextView>
                             </LinearLayout>
 
 
                         </LinearLayout>
+
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content">
+
                             <LinearLayout
                                 android:layout_width="0px"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
                                 android:orientation="vertical">
+
                                 <TextView
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:text="Нараховано .........................................................................................."
-                                    android:textColor="#333333"
-                                    android:textSize="16px"
+                                    android:text="Нараховано ......................................................................................................."
+                                    android:theme="@style/AppTheme.Font_FGMCR"
+                                    android:textSize="17px"
                                     android:maxHeight="21px">
 
                                 </TextView>
@@ -209,32 +211,35 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:gravity="right">
+
                                 <TextView
                                     android:id="@+id/id_accrued_uan"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:textColor="#333333"
+                                    android:theme="@style/AppTheme.Font_FGMCR"
                                     android:text="10.1 грн"
-                                    android:textSize="16px"
-                                    ></TextView>
+                                    android:textSize="17px"></TextView>
                             </LinearLayout>
 
 
                         </LinearLayout>
+
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content">
+
                             <LinearLayout
                                 android:layout_width="0px"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
                                 android:orientation="vertical">
+
                                 <TextView
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:text="Списано ......................................................................................."
-                                    android:textColor="#333333"
-                                    android:textSize="16px"
+                                    android:text="Списано ......................................................................................................"
+                                    android:theme="@style/AppTheme.Font_FGMCR"
+                                    android:textSize="17px"
                                     android:maxHeight="21px">
 
                                 </TextView>
@@ -245,33 +250,36 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:gravity="right">
+
                                 <TextView
                                     android:id="@+id/id_withdrawn_uan"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:textColor="#333333"
+                                    android:theme="@style/AppTheme.Font_FGMCR"
                                     android:text="10.1 грн"
-                                    android:textSize="16px"
-                                    ></TextView>
+                                    android:textSize="17px"></TextView>
                             </LinearLayout>
 
 
                         </LinearLayout>
+
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content">
+
                             <LinearLayout
                                 android:layout_width="0px"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
                                 android:orientation="vertical">
+
                                 <TextView
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="4px"
-                                    android:text="Залишок ..........................................................................................."
-                                    android:textColor="#333333"
-                                    android:textSize="16px"
+                                    android:text="Залишок ..............................................................................................."
+                                    android:theme="@style/AppTheme.Font_FGMCR"
+                                    android:textSize="17px"
                                     android:maxHeight="21px">
 
                                 </TextView>
@@ -282,24 +290,23 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:gravity="right">
+
                                 <TextView
                                     android:id="@+id/id_remainder_uan"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="4px"
-                                    android:textColor="#333333"
+                                    android:theme="@style/AppTheme.Font_FGMCR"
                                     android:text="10.1 грн"
-                                    android:textSize="16px"
-                                    ></TextView>
+                                    android:textSize="17px"></TextView>
                             </LinearLayout>
 
 
                         </LinearLayout>
-                        
+
 
                     </LinearLayout>
 
-                    
                 </LinearLayout>
 
             </LinearLayout>
@@ -330,15 +337,15 @@
                 android:gravity="center"
                 android:background="#026939"
                 android:textColor="#fff"
-                android:textSize="32px"
-                android:textStyle="bold">
+                android:textSize="40px"
+                android:theme="@style/AppTheme.Font_FGDCR">
 
             </TextView>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30px"
+                android:layout_marginTop="20px"
                 android:orientation="vertical">
 
                 <TextView
@@ -346,23 +353,20 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Вата"
-                    android:textColor="#1a1a1a"
                     android:textSize="30px"
                     android:maxHeight="40px"
-                    android:textStyle="bold"></TextView>
+                    android:theme="@style/AppTheme.Font_FGDCR"></TextView>
 
                 <TextView
                     android:id="@+id/offer_descr_1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="оао іоо іва ві щщіщіщоа"
-                    android:textColor="#262626"
                     android:textSize="23px"
-                    android:maxHeight="33px"></TextView>
+                    android:maxHeight="33px"
+                    android:theme="@style/AppTheme.Font_FGMCR"></TextView>
 
                 <LinearLayout
-                    android:layout_marginTop="15px"
-                    android:layout_marginLeft="10px"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
@@ -388,9 +392,9 @@
                             android:layout_height="wrap_content"
                             android:text="123.00 грн"
                             android:gravity="right"
-                            android:textColor="#FE614C"
                             android:textSize="25px"
-                            android:textStyle="bold"></TextView>
+                            android:theme="@style/AppTheme.Font_FGDCR"
+                            android:textColor="#FF5651"></TextView>
 
                         <TextView
                             android:id="@+id/offer_new_price_1"
@@ -398,9 +402,8 @@
                             android:layout_height="wrap_content"
                             android:text="456.00 грн"
                             android:gravity="right"
-                            android:textColor="#1a1a1a"
                             android:textSize="25px"
-                            android:textStyle="bold"></TextView>
+                            android:theme="@style/AppTheme.Font_FGDCR"></TextView>
 
 
                     </LinearLayout>
@@ -411,7 +414,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30px"
+                android:layout_marginTop="20px"
                 android:orientation="vertical">
 
                 <TextView
@@ -419,25 +422,23 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Вата"
-                    android:textColor="#1a1a1a"
                     android:textSize="30px"
                     android:maxHeight="40px"
-                    android:textStyle="bold"></TextView>
+                    android:theme="@style/AppTheme.Font_FGDCR"></TextView>
 
                 <TextView
                     android:id="@+id/offer_descr_2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="оао іоо іва ві щщіщіщоа"
-                    android:textColor="#262626"
                     android:textSize="23px"
-                    android:maxHeight="33px"></TextView>
+                    android:maxHeight="33px"
+                    android:theme="@style/AppTheme.Font_FGMCR"></TextView>
 
                 <LinearLayout
-                    android:layout_marginLeft="10px"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginTop="15px">
+                    android:layout_marginTop="8px">
 
 
                     <ImageView
@@ -461,9 +462,9 @@
                             android:layout_height="wrap_content"
                             android:text="123.00 грн"
                             android:gravity="right"
-                            android:textColor="#FE614C"
                             android:textSize="25px"
-                            android:textStyle="bold"></TextView>
+                            android:theme="@style/AppTheme.Font_FGDCR"
+                            android:textColor="#FF5651"></TextView>
 
                         <TextView
                             android:id="@+id/offer_new_price_2"
@@ -471,9 +472,8 @@
                             android:layout_height="wrap_content"
                             android:text="456.00 грн"
                             android:gravity="right"
-                            android:textColor="#1a1a1a"
                             android:textSize="25px"
-                            android:textStyle="bold"></TextView>
+                            android:theme="@style/AppTheme.Font_FGDCR"></TextView>
 
 
                     </LinearLayout>

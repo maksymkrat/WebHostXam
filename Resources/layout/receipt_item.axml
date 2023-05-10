@@ -23,9 +23,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Analgin gfdgdf gdfg"
-                android:textColor="#1a1a1a"
                 android:textSize="23px"
-                android:textStyle="bold"></TextView>
+                android:theme="@style/AppTheme.Font_FGDCR"></TextView>
 
         </LinearLayout>
 
@@ -40,9 +39,8 @@
                 android:layout_height="wrap_content"
                 android:text="1115.95 грн"
                 android:paddingRight="5px"
-                android:textColor="#1a1a1a"
                 android:textSize="23px"
-                android:textStyle="bold"
+                android:theme="@style/AppTheme.Font_FGDCR"
                 
                 >
 
@@ -55,10 +53,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="left"
-        android:textColor="#333333"
         android:text="this is some text for description desscription"
         android:textSize="21px"
-        android:layout_marginBottom="7px">
+        android:layout_marginBottom="7px"
+        android:theme="@style/AppTheme.Font_FGMCR">
     </TextView>
 
 
