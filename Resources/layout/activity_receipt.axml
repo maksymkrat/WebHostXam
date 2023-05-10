@@ -37,7 +37,7 @@
             <ListView
                 android:id="@+id/id_list_items"
                 android:layout_width="match_parent"
-                android:layout_height="300px"
+                android:layout_height="295px"
                 android:layout_marginTop="25px"
                 android:divider="@null"
                 android:dividerHeight="0dp">
@@ -122,7 +122,7 @@
                         android:textSize="16px">
                     </TextView>
                     <TextView
-                        android:layout_marginTop="3px"
+                        android:layout_marginTop="4px"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="left"
@@ -139,44 +139,154 @@
                         android:text="по карті № 000000000000"
                         android:textSize="16px">
                     </TextView>
-                    <TextView
-                        android:id="@+id/id_was_uan"
-                        android:layout_marginTop="3px"
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="left"
-                        android:textColor="#333333"
-                        android:text="Було........."
-                        android:textSize="16px">
-                    </TextView>
-                    <TextView
-                        android:id="@+id/id_accrued_uan"
+                        android:layout_height="wrap_content">
+                        <LinearLayout
+                            android:layout_width="0px"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="4px"
+                                android:text="Було ................................................................................"
+                                android:textColor="#333333"
+                                android:textSize="16px"
+                                android:maxHeight="21px">
+
+                            </TextView>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="right">
+                            <TextView
+                                android:id="@+id/id_was_uan"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="4px"
+                                android:textColor="#333333"
+                                android:text="10.1 грн"
+                                android:textSize="16px"
+                                ></TextView>
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="left"
-                        android:textColor="#333333"
-                        android:text="Нараховано..........."
-                        android:textSize="16px">
-                    </TextView>
-                    <TextView 
-                        android:id="@+id/id_withdrawn_uan"
+                        android:layout_height="wrap_content">
+                        <LinearLayout
+                            android:layout_width="0px"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Нараховано ...................................................................."
+                                android:textColor="#333333"
+                                android:textSize="16px"
+                                android:maxHeight="21px">
+
+                            </TextView>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="right">
+                            <TextView
+                                android:id="@+id/id_accrued_uan"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="#333333"
+                                android:text="10.1 грн"
+                                android:textSize="16px"
+                                ></TextView>
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="left"
-                        android:textColor="#333333"
-                        android:text="Списано..........."
-                        android:textSize="16px">
-                    </TextView>
-                    <TextView
-                        android:id="@+id/id_remainder_uan"
-                        android:layout_marginTop="3px"
+                        android:layout_height="wrap_content">
+                        <LinearLayout
+                            android:layout_width="0px"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Списано ..................................................................."
+                                android:textColor="#333333"
+                                android:textSize="16px"
+                                android:maxHeight="21px">
+
+                            </TextView>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="right">
+                            <TextView
+                                android:id="@+id/id_withdrawn_uan"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="#333333"
+                                android:text="10.1 грн"
+                                android:textSize="16px"
+                                ></TextView>
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="left"
-                        android:textColor="#333333"
-                        android:text="Залишок ..........."
-                        android:textSize="16px">
-                    </TextView>
+                        android:layout_height="wrap_content">
+                        <LinearLayout
+                            android:layout_width="0px"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="4px"
+                                android:text="Залишок .........................................................................."
+                                android:textColor="#333333"
+                                android:textSize="16px"
+                                android:maxHeight="21px">
+
+                            </TextView>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="right">
+                            <TextView
+                                android:id="@+id/id_remainder_uan"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="4px"
+                                android:textColor="#333333"
+                                android:text="10.1 грн"
+                                android:textSize="16px"
+                                ></TextView>
+                        </LinearLayout>
+
+
+                    </LinearLayout>
                    
 
                 </LinearLayout>

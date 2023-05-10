@@ -336,14 +336,14 @@ namespace WebHostXam.Android
             remainderUAN = receiptWindow.FindViewById<TextView>(Resource.Id.id_remainder_uan);
             
             fourLastPhoneDigits.Text = $"(***) *** ** **";
-            var phoneDigitsArr = receipt.CardInfo.FourLastPhoneDigits.Split("");
+            var phoneDigitsArr = receipt.CardInfo.FourLastPhoneDigits.ToCharArray();
             if(phoneDigitsArr.Length >3)
                 fourLastPhoneDigits.Text = $"(***) *** {phoneDigitsArr[0]}{phoneDigitsArr[1]} {phoneDigitsArr[2]}{phoneDigitsArr[3]}";
             cardNumber.Text = $"по карті № {receipt.CardInfo.CardNumber}";
-            wasUAN.Text =       $"Було ............. {receipt.CardInfo.WasUAN.ToString("N2")} грн";
-            accruedUAN.Text =   $"Нараховано ....... {receipt.CardInfo.AccruedUAN.ToString("N2")} грн";
-            withdrawnUAN.Text = $"Списано .......... {receipt.CardInfo.WithdrawnUAN.ToString("N2")} грн";
-            remainderUAN.Text = $"залишок .......... {receipt.CardInfo.RemainderUAN.ToString("N2")} грн";
+            wasUAN.Text =       $" {receipt.CardInfo.WasUAN.ToString("N2")} грн";
+            accruedUAN.Text =   $" {receipt.CardInfo.AccruedUAN.ToString("N2")} грн";
+            withdrawnUAN.Text = $" {receipt.CardInfo.WithdrawnUAN.ToString("N2")} грн";
+            remainderUAN.Text = $" {receipt.CardInfo.RemainderUAN.ToString("N2")} грн";
             
         }
 
@@ -370,10 +370,10 @@ namespace WebHostXam.Android
             if(phoneDigitsArr.Length >3)
                 fourLastPhoneDigits.Text = $"(***) *** {phoneDigitsArr[0]}{phoneDigitsArr[1]} {phoneDigitsArr[2]}{phoneDigitsArr[3]}";
             cardNumber.Text = $"по карті № {receipt.CardInfo.CardNumber}";
-            wasUAN.Text =       $"Було ............. {receipt.CardInfo.WasUAN.ToString("N2")} грн";
-            accruedUAN.Text =   $"Нараховано ....... {receipt.CardInfo.AccruedUAN.ToString("N2")} грн";
-            withdrawnUAN.Text = $"Списано .......... {receipt.CardInfo.WithdrawnUAN.ToString("N2")} грн";
-            remainderUAN.Text = $"залишок .......... {receipt.CardInfo.RemainderUAN.ToString("N2")} грн";
+            wasUAN.Text =       $" {receipt.CardInfo.WasUAN.ToString("N2")} грн";
+            accruedUAN.Text =   $" {receipt.CardInfo.AccruedUAN.ToString("N2")} грн";
+            withdrawnUAN.Text = $" {receipt.CardInfo.WithdrawnUAN.ToString("N2")} грн";
+            remainderUAN.Text = $" {receipt.CardInfo.RemainderUAN.ToString("N2")} грн";
 
             //extra offer
 
@@ -388,10 +388,14 @@ namespace WebHostXam.Android
             offerOldPrice1.Text = "";
             if (receipt.Offer1.OldPrice != 0)
                 offerOldPrice1.Text = $"{receipt.Offer1.OldPrice.ToString("N2")} грн";
+            
+                
 
             offerOldPrice1.PaintFlags = PaintFlags.StrikeThruText;
             offerNewPrice1.Text = $"{receipt.Offer1.NewPrice.ToString("N2")} грн";
-            offerImg1.SetImageBitmap(ConvertStringBase64ToBitmap(receipt.Offer1.ImgBase64Str)); // if null TODO
+            var bm1 = ConvertStringBase64ToBitmap(receipt.Offer1.ImgBase64Str);
+            if(bm1 != null)
+                offerImg1.SetImageBitmap(bm1); 
 
             offerImg2 = receiptWindow.FindViewById<ImageView>(Resource.Id.offer_img_2);
             offerName2 = receiptWindow.FindViewById<TextView>(Resource.Id.offer_name_2);
@@ -407,7 +411,9 @@ namespace WebHostXam.Android
             
             offerOldPrice2.PaintFlags = PaintFlags.StrikeThruText;
             offerNewPrice2.Text = $"{receipt.Offer2.NewPrice.ToString("N2")} грн";
-            offerImg2.SetImageBitmap(ConvertStringBase64ToBitmap(receipt.Offer2.ImgBase64Str)); // if null TODO
+            var bm2 = ConvertStringBase64ToBitmap(receipt.Offer2.ImgBase64Str);
+            if(bm2 != null)
+                offerImg2.SetImageBitmap(bm2);
         }
 
 
@@ -430,7 +436,6 @@ namespace WebHostXam.Android
             }
             catch (Exception e)
             {
-                Console.WriteLine(e);
                 return null;
             }
         }
