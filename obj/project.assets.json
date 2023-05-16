@@ -1737,11 +1737,11 @@
           }
         }
       },
-      "Microsoft.Extensions.Primitives/5.0.1": {
+      "Microsoft.Extensions.Primitives/2.2.0": {
         "type": "package",
         "dependencies": {
-          "System.Buffers": "4.5.1",
-          "System.Runtime.CompilerServices.Unsafe": "5.0.0"
+          "System.Memory": "4.5.1",
+          "System.Runtime.CompilerServices.Unsafe": "4.5.1"
         },
         "compile": {
           "lib/netstandard2.0/Microsoft.Extensions.Primitives.dll": {
@@ -5855,26 +5855,17 @@
         "version.txt"
       ]
     },
-    "Microsoft.Extensions.Primitives/5.0.1": {
-      "sha512": "5WPSmL4YeP7eW+Vc8XZ4DwjYWBAiSwDV9Hm63JJWcz1Ie3Xjv4KuJXzgCstj48LkLfVCYa7mLcx7y+q6yqVvtw==",
+    "Microsoft.Extensions.Primitives/2.2.0": {
+      "sha512": "azyQtqbm4fSaDzZHD/J+V6oWMFaf2tWP4WEGIYePLCMw3+b2RQdj9ybgbQyjCshcitQKQ4lEDOZjmSlTTrHxUg==",
       "type": "package",
-      "path": "microsoft.extensions.primitives/5.0.1",
+      "path": "microsoft.extensions.primitives/2.2.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
-        "Icon.png",
-        "LICENSE.TXT",
-        "THIRD-PARTY-NOTICES.TXT",
-        "lib/net461/Microsoft.Extensions.Primitives.dll",
-        "lib/net461/Microsoft.Extensions.Primitives.xml",
-        "lib/netcoreapp3.0/Microsoft.Extensions.Primitives.dll",
-        "lib/netcoreapp3.0/Microsoft.Extensions.Primitives.xml",
         "lib/netstandard2.0/Microsoft.Extensions.Primitives.dll",
         "lib/netstandard2.0/Microsoft.Extensions.Primitives.xml",
-        "microsoft.extensions.primitives.5.0.1.nupkg.sha512",
-        "microsoft.extensions.primitives.nuspec",
-        "useSharedDesignerContext.txt",
-        "version.txt"
+        "microsoft.extensions.primitives.2.2.0.nupkg.sha512",
+        "microsoft.extensions.primitives.nuspec"
       ]
     },
     "Microsoft.Extensions.WebEncoders/2.2.0": {
@@ -10537,7 +10528,7 @@
   "projectFileDependencyGroups": {
     "MonoAndroid,Version=v10.0": [
       "Microsoft.AspNetCore.StaticFiles >= 2.2.0",
-      "Microsoft.Extensions.Primitives >= 5.0.1",
+      "Microsoft.Extensions.Primitives >= 2.2.0",
       "System.Net.Http >= 4.3.4",
       "WebHostXam >= 1.0.0",
       "Xamarin.Android.Support.Design >= 28.0.0.3",
@@ -10592,7 +10583,7 @@
           },
           "Microsoft.Extensions.Primitives": {
             "target": "Package",
-            "version": "[5.0.1, )"
+            "version": "[2.2.0, )"
           },
           "System.Net.Http": {
             "target": "Package",
@@ -10628,6 +10619,16 @@
       "level": "Warning",
       "warningLevel": 1,
       "message": "You are running the 'restore' operation with an 'HTTP' source, 'http://nuget.mint-innovations.com/v3/index.json'. Non-HTTPS access will be removed in a future version. Consider migrating to an 'HTTPS' source."
+    },
+    {
+      "code": "NU1605",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Detected package downgrade: Microsoft.Extensions.Primitives from 5.0.1 to 2.2.0. Reference the package directly from the project to select a different version. \r\n WebHostXam.Android -> WebHostXam -> Microsoft.Extensions.Primitives (>= 5.0.1) \r\n WebHostXam.Android -> Microsoft.Extensions.Primitives (>= 2.2.0)",
+      "libraryId": "Microsoft.Extensions.Primitives",
+      "targetGraphs": [
+        "MonoAndroid,Version=v10.0"
+      ]
     }
   ]
 }

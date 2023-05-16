@@ -13,7 +13,7 @@ using WebHostXam.Models;
 
 namespace WebHostXam.KestrelWebHost
 {
-    public class WebApp : ControllerBase
+    public class WebApp : Controller
     {
         private readonly ReceiptManager _receiptManager;
         private readonly WindowViewManager _viewManager;
@@ -69,9 +69,12 @@ namespace WebHostXam.KestrelWebHost
                     //     bytes = ms.ToArray();
                     // }
                     var bytes = Instance.GetMedia2(page.Split('/')[2], contentType);
+                    //var x = Instance.GetMedia3(page.Split('/')[2], contentType);
                     response.Headers.ContentLength = bytes.Length;
-                   
-                    //response.Headers.Add("content-disposition", "attachment;filename=pik.jpg");
+
+                    //var x = response.Headers["application/octet-stream"];
+                    
+                    response.Headers.Add("content-disposition", "attachment;filename=pik.jpg");
                     //response.Headers.Add("Content-Length", bytes.Length.ToString());
                     
                     await response.Body.WriteAsync(bytes, 0, bytes.Length);
@@ -152,6 +155,13 @@ namespace WebHostXam.KestrelWebHost
             response =  System.IO.File.ReadAllBytes(pathV);
             return response;
             
+        }
+
+        public PhysicalFileResult GetMedia3(string fileName, string mediatype)
+        {
+            string file_path = $"/storage/emulated/0/Download/{fileName}";
+            string file_name = "book.pdf";
+            return PhysicalFile(file_path,  "application/octet-stream");
         }
 
         public string GetContentType(string extension)

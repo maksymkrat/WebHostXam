@@ -11,7 +11,7 @@
         android:layout_height="708px"
         android:layout_alignParentBottom="true"
         android:background="@android:color/white"
-        android:rotation="-90"
+       android:rotation="-90"
         android:translationY="-186px"
         android:translationX="-186px"
         >
@@ -37,7 +37,7 @@
             <ListView
                 android:id="@+id/id_list_items"
                 android:layout_width="match_parent"
-                android:layout_height="295px"
+                android:layout_height="290px"
                 android:layout_marginTop="25px"
                 android:divider="@null"
                 android:dividerHeight="0dp">
@@ -88,7 +88,7 @@
             </LinearLayout>
             <View
                 android:layout_width="match_parent"
-                android:layout_height="3px"
+                android:layout_height="1px"
                 android:layout_marginTop="20px"
                 android:background="#1a1a1a"></View>
             

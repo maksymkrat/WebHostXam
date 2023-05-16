@@ -62,10 +62,10 @@ namespace WebHostXam.Android
             
             RunOnUiThread((() =>
             { 
-                adapter = new ReceiptItemAdapter(this, receiptManager.ReceiptModel.items);
-                viewReceiptItems.Adapter = adapter;
-                textDiscount.Text = $"Знижка по карті: {receiptManager.ReceiptModel.Discount}%";
-                textReceiptAmount.Text = $"Сума: {receiptManager.ReceiptModel.Amount}";
+                // adapter = new ReceiptItemAdapter(this, receiptManager.ReceiptModel.items);
+                // viewReceiptItems.Adapter = adapter;
+                // textDiscount.Text = $"Знижка по карті: {receiptManager.ReceiptModel.Discount}%";
+                // textReceiptAmount.Text = $"{receiptManager.ReceiptModel.Amount} грн";
             
             }));
             

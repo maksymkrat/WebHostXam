@@ -14,6 +14,10 @@ namespace WebHostXam.Managers
         public Action ActionOpenShift { get; set; }
         public Action ActionCloseShift { get; set; }
         
+        public Action ActionFilesDownloaded { get; set; }
+
+        public string HTML { get; set; }
+        
         private const string IS_OPEN_SHIFT_KEY = "IsOpenShift";
         private const string AccessData = "Hilgrup1289";
         private const string ServerURL = "http://193.193.222.87:5600/GetHTMLWindowView";
@@ -44,6 +48,11 @@ namespace WebHostXam.Managers
         public void CloseShift()
         {
             ActionCloseShift.Invoke();
+        }
+
+        public void FilesDownloaded()
+        {
+            ActionFilesDownloaded.Invoke();
         }
 
         public void ChangeUpperView()
@@ -77,7 +86,7 @@ namespace WebHostXam.Managers
             return JsonConvert.DeserializeObject<WindowViewModel>(data);
         }
         
-        public  string GetHTMLForView()
+        public async   void LoadHTMLForView()
         {
             try
             {
@@ -86,13 +95,14 @@ namespace WebHostXam.Managers
 
                 if(response.IsSuccessStatusCode)
                 {
-                    return   response.Content.ReadAsStringAsync().Result;
+                    HTML =   await response.Content.ReadAsStringAsync();
+                    return;
                 }
-                return string.Empty;
+                HTML = string.Empty;
             }
             catch (Exception e)
             {
-                return String.Empty;
+                HTML = String.Empty;
             }
            
         }

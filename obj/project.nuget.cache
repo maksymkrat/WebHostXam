@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "7GlRAZZpLRJAAQqHn6xVk9/pxnvLWvxsZnDX+tI6LD+CQzxsCrBQWdjN19bxd2sbMcQw9khn/+XEKAB2AxAEIw==",
+  "dgSpecHash": "2eZZ/V81Vp8AZWfrIY3WOZFkxw+q8iqOoQNu1TQzYdvuS42mO7Bris15R1qPS4Wud643BIbVwr0x1g681f2Q8A==",
   "success": true,
   "projectFilePath": "D:\\AndroidProjects\\WebHostXam\\WebHostXam.Android.csproj",
   "expectedPackageFiles": [
@@ -97,7 +97,7 @@
     "C:\\Users\\User\\.nuget\\packages\\microsoft.extensions.objectpool\\2.2.0\\microsoft.extensions.objectpool.2.2.0.nupkg.sha512",
     "C:\\Users\\User\\.nuget\\packages\\microsoft.extensions.options\\5.0.0\\microsoft.extensions.options.5.0.0.nupkg.sha512",
     "C:\\Users\\User\\.nuget\\packages\\microsoft.extensions.options.configurationextensions\\5.0.0\\microsoft.extensions.options.configurationextensions.5.0.0.nupkg.sha512",
-    "C:\\Users\\User\\.nuget\\packages\\microsoft.extensions.primitives\\5.0.1\\microsoft.extensions.primitives.5.0.1.nupkg.sha512",
+    "C:\\Users\\User\\.nuget\\packages\\microsoft.extensions.primitives\\2.2.0\\microsoft.extensions.primitives.2.2.0.nupkg.sha512",
     "C:\\Users\\User\\.nuget\\packages\\microsoft.extensions.webencoders\\2.2.0\\microsoft.extensions.webencoders.2.2.0.nupkg.sha512",
     "C:\\Users\\User\\.nuget\\packages\\microsoft.net.http.headers\\2.2.0\\microsoft.net.http.headers.2.2.0.nupkg.sha512",
     "C:\\Users\\User\\.nuget\\packages\\microsoft.win32.registry\\4.5.0\\microsoft.win32.registry.4.5.0.nupkg.sha512",
@@ -249,6 +249,16 @@
       "level": "Warning",
       "warningLevel": 1,
       "message": "You are running the 'restore' operation with an 'HTTP' source, 'http://nuget.mint-innovations.com/v3/index.json'. Non-HTTPS access will be removed in a future version. Consider migrating to an 'HTTPS' source."
+    },
+    {
+      "code": "NU1605",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Detected package downgrade: Microsoft.Extensions.Primitives from 5.0.1 to 2.2.0. Reference the package directly from the project to select a different version. \r\n WebHostXam.Android -> WebHostXam -> Microsoft.Extensions.Primitives (>= 5.0.1) \r\n WebHostXam.Android -> Microsoft.Extensions.Primitives (>= 2.2.0)",
+      "libraryId": "Microsoft.Extensions.Primitives",
+      "targetGraphs": [
+        "MonoAndroid,Version=v10.0"
+      ]
     }
   ]
 }

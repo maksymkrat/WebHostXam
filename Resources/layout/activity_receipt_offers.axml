@@ -14,8 +14,9 @@
         android:layout_alignParentBottom="true"
         android:background="@android:color/white"
         android:rotation="-90"
+        android:translationY="-186px"
         android:translationX="-186px"
-        android:translationY="-186px">
+        >
 
         <LinearLayout
             android:layout_width="0px"
@@ -36,14 +37,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="ВАШ ЧЕК"
-                    android:textSize="40px"
+                    android:textSize="37px"
                     android:theme="@style/AppTheme.Font_FGDCR"
                     android:paddingLeft="5px"></TextView>
 
                 <ListView
                     android:id="@+id/id_list_items"
                     android:layout_width="match_parent"
-                    android:layout_height="295px"
+                    android:layout_height="290px"
                     android:layout_marginTop="25px"
                     android:divider="@null"
                     android:dividerHeight="0dp"></ListView>
@@ -93,7 +94,7 @@
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="3px"
+                    android:layout_height="1px"
                     android:layout_marginTop="20px"
                     android:background="#1a1a1a"></View>
 
@@ -315,7 +316,7 @@
         </LinearLayout>
 
         <View
-            android:layout_width="3px"
+            android:layout_width="1px"
             android:layout_height="match_parent"
             android:background="#1a1a1a"></View>
 
@@ -367,6 +368,7 @@
                     android:theme="@style/AppTheme.Font_FGMCR"></TextView>
 
                 <LinearLayout
+                    android:layout_marginTop="8px"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
@@ -377,7 +379,7 @@
                         android:maxWidth="300px"
                         android:layout_height="190px"
                         android:maxHeight="190px"
-                        android:src="@drawable/cotton"></ImageView>
+                        ></ImageView>
 
 
                     <LinearLayout
@@ -392,7 +394,7 @@
                             android:layout_height="wrap_content"
                             android:text="123.00 грн"
                             android:gravity="right"
-                            android:textSize="25px"
+                            android:textSize="29px"
                             android:theme="@style/AppTheme.Font_FGDCR"
                             android:textColor="#FF5651"></TextView>
 
@@ -402,7 +404,7 @@
                             android:layout_height="wrap_content"
                             android:text="456.00 грн"
                             android:gravity="right"
-                            android:textSize="25px"
+                            android:textSize="30px"
                             android:theme="@style/AppTheme.Font_FGDCR"></TextView>
 
 
@@ -436,9 +438,9 @@
                     android:theme="@style/AppTheme.Font_FGMCR"></TextView>
 
                 <LinearLayout
+                    android:layout_marginTop="8px"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="8px">
+                    android:layout_height="match_parent">
 
 
                     <ImageView
@@ -447,7 +449,7 @@
                         android:maxWidth="300px"
                         android:layout_height="190px"
                         android:maxHeight="190px"
-                        android:src="@drawable/cotton"></ImageView>
+                        ></ImageView>
 
 
                     <LinearLayout
@@ -462,7 +464,7 @@
                             android:layout_height="wrap_content"
                             android:text="123.00 грн"
                             android:gravity="right"
-                            android:textSize="25px"
+                            android:textSize="29px"
                             android:theme="@style/AppTheme.Font_FGDCR"
                             android:textColor="#FF5651"></TextView>
 
@@ -472,7 +474,7 @@
                             android:layout_height="wrap_content"
                             android:text="456.00 грн"
                             android:gravity="right"
-                            android:textSize="25px"
+                            android:textSize="30px"
                             android:theme="@style/AppTheme.Font_FGDCR"></TextView>
 
 
