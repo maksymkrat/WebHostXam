@@ -4334,7 +4334,7 @@
         "dependencies": {
           "Microsoft.AspNetCore.Mvc": "2.2.0",
           "Microsoft.AspNetCore.StaticFiles": "2.2.0",
-          "Microsoft.Extensions.Primitives": "5.0.1",
+          "Microsoft.Extensions.Primitives": "7.0.0",
           "Newtonsoft.Json": "13.0.1",
           "Xamarin.Essentials": "1.6.1",
           "Xamarinme.Configuration": "1.0.2",
@@ -10624,7 +10624,7 @@
       "code": "NU1605",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "Detected package downgrade: Microsoft.Extensions.Primitives from 5.0.1 to 2.2.0. Reference the package directly from the project to select a different version. \r\n WebHostXam.Android -> WebHostXam -> Microsoft.Extensions.Primitives (>= 5.0.1) \r\n WebHostXam.Android -> Microsoft.Extensions.Primitives (>= 2.2.0)",
+      "message": "Detected package downgrade: Microsoft.Extensions.Primitives from 7.0.0 to 2.2.0. Reference the package directly from the project to select a different version. \r\n WebHostXam.Android -> WebHostXam -> Microsoft.Extensions.Primitives (>= 7.0.0) \r\n WebHostXam.Android -> Microsoft.Extensions.Primitives (>= 2.2.0)",
       "libraryId": "Microsoft.Extensions.Primitives",
       "targetGraphs": [
         "MonoAndroid,Version=v10.0"

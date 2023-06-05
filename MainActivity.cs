@@ -105,7 +105,7 @@ namespace WebHostXam.Android
 
             var host = new App();
             host.ComparisonIp();
-            //host.DownloadMediaContent();
+            host.DownloadMediaContent();
             
             
             receiptManager = ReceiptManager.GetInstance();
@@ -128,46 +128,23 @@ namespace WebHostXam.Android
             _black_layout = FindViewById<LinearLayout>(Resource.Id.black_layout);
             _videoView = FindViewById<VideoView>(Resource.Id.video);
             _videoView.SetBackgroundColor(Color.Red);
-
-            //reae byte and create video
-            //  var b64Str = System.IO.File.ReadAllText(@"/storage/emulated/0/Data/textFile.txt");
-            //  Byte[] bytes = Convert.FromBase64String(b64Str);
-            //
-            //  
-            // if (!File.Exists("/storage/emulated/0/Data/kuskus.mp4"))
-            // {
-            //     FileInfo file = new FileInfo("/storage/emulated/0/Data/kuskus.mp4");
-            //     using (Stream stream = file.OpenWrite())
-            //     {
-            //         stream.Write(bytes,0 ,bytes.Length);
-            //         stream.Close();
-            //     }
-            // }
+            
 
             //html = System.IO.File.ReadAllText(@"/storage/emulated/0/Data/test2.html");
 
             //html =  String.Empty;//GetHTMLForView();
-            //html = "<video autoplay muted loop ><source src=\"http://127.0.0.1:3555/files/vid2.mp4\" type=\"video/mp4\"></video>";
+            html = "<video autoplay muted loop ><source src=\"http://127.0.0.1:3555/files/vid3.mp4\" type=\"video/mp4\"></video>";
             //html = "<img src=\"http://127.0.0.1:3555/files/bl.png\" width=\"100%\" height=\"100%\">";
 
             //html = viewManager.GetHTMLForView();
            //html = "";
         }
-
-        // protected override void OnStart()
-        // {
-        //     base.OnStart();
-        //     RunOnUiThread((() =>
-        //     {
-        //         upperWebView.LoadData(bodyStyle + html, "text/html", null);
-        //     }));
-        // }
-
+        
 
         protected async override void OnResume()
         {
             base.OnResume();
-            html = viewManager.HTML;
+           // html = viewManager.HTML;
             
             upperWebView.ClearCache(true);
             upperWebView.ClearHistory();
@@ -211,9 +188,7 @@ namespace WebHostXam.Android
 
         public void HideReceiptWindow()
         {
-            // ShowReceiptWindow(false);
-            // onShowReceiptWindow = true;
-
+           
             RunOnUiThread((() =>
                     {
                         receiptWindow.Dismiss();
@@ -264,39 +239,9 @@ namespace WebHostXam.Android
             }));
         }
 
-        public void ShowReceiptWindow(bool show)
-        {
-            // RunOnUiThread((() =>
-            // {
-            //     receiptLayout = FindViewById<LinearLayout>(Resource.Id.receipt_window);
-            //     receiptLayout.Animate()!
-            //         .TranslationY(show ? 0 : -600)
-            //         .SetInterpolator(new OvershootInterpolator(0.5f))!
-            //         .Start();
-            // }));
-        }
-
         public void StartReceipt(ReceiptModel receipt)
         {
-            // if (receipt != null)
-            // {
-            //     RunOnUiThread((() =>
-            //     { 
-            //         adapter = new ReceiptItemAdapter(this, receipt.items);
-            //         viewReceiptItems.Adapter = adapter;
-            //         textDiscount.Text = $"Знижка по карті: {receipt.Discount}%";
-            //         textReceiptAmount.Text = $"Сума: {receipt.Amount}";
-            //
-            //     }));
-            //     ShowReceiptWindow(true);
-            //     onShowReceiptWindow = false; //need delete
-            // }
-
-            //----------------------
-
-            //StartActivity(typeof(ReceiptActivity));
-
-            //----------------------
+           
             if (receipt != null)
             {
                 _receipt = receipt;

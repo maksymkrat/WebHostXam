@@ -127,7 +127,7 @@
             },
             "Microsoft.Extensions.Primitives": {
               "target": "Package",
-              "version": "[5.0.1, )"
+              "version": "[7.0.0, )"
             },
             "NETStandard.Library": {
               "suppressParent": "All",

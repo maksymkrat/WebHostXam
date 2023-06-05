@@ -25,7 +25,7 @@ namespace WebHostXam
         private const String NONE = "none";
         private const string ServerURLForIp = "http://193.193.222.87:5600/InsertOrUpdateTabletIp"; //prod
        private const string ServerURLForMedia = "http://193.193.222.87:5600/GetMediaFiles"; // server prod
-           // private const string ServerURLForMedia = "http://172.19.100.133:5555/GetMediaFiles"; // local
+        //private const string ServerURLForMedia = "http://192.168.0.102:5555/GetMediaFiles"; // local
         private const string AccessData = "Hilgrup1289";
         private readonly HttpClient _httpClient;
         private readonly WindowViewManager _viewManager;
@@ -48,7 +48,7 @@ namespace WebHostXam
             }).Start();
             
             InitServerIp();
-           // _viewManager.LoadHTMLForView();
+            _viewManager.LoadHTMLForView();
         }
 
         private void InitServerIp()
@@ -125,21 +125,21 @@ namespace WebHostXam
                 var files =  JsonConvert.DeserializeObject<List<FIleModel>>(str);
                 foreach (var file in files)
                 {
-                    if (File.Exists($"/storage/emulated/0/Download/{file.FileName}.{file.FileExtension}"))
+                    if (File.Exists($"/storage/emulated/0/Download/{file.FileName}{file.FileExtension}"))
                     {
-                        File.Delete($"/storage/emulated/0/Download/{file.FileName}.{file.FileExtension}");
+                        File.Delete($"/storage/emulated/0/Download/{file.FileName}{file.FileExtension}");
                     }
-                    Byte[] bytes = Convert.FromBase64String(file.Base64);
-                    FileInfo fileInfo = new FileInfo($"/storage/emulated/0/Download/{file.FileName}.{file.FileExtension}");
+                    Byte[] bytes = file.FileBytes;
+                    FileInfo fileInfo = new FileInfo($"/storage/emulated/0/Download/{file.FileName}{file.FileExtension}");
                     using (Stream stream = fileInfo.OpenWrite())
                     {
                         await stream.WriteAsync(bytes,0 ,bytes.Length);
                         stream.Close();
                     }
                 }
-                
-                _viewManager.FilesDownloaded();
                 Preferences.Set(FILES_DOWNLOADED, "true");
+                _viewManager.FilesDownloaded();
+                
             }
             catch (Exception e)
             {

@@ -20,7 +20,8 @@ namespace WebHostXam.Managers
         
         private const string IS_OPEN_SHIFT_KEY = "IsOpenShift";
         private const string AccessData = "Hilgrup1289";
-        private const string ServerURL = "http://193.193.222.87:5600/GetHTMLWindowView";
+        private const string ServerURL = "http://193.193.222.87:5600/GetHTMLWindowView"; // prod
+        //private const string ServerURL = "http://192.168.0.102:5555/GetHTMLWindowView"; // local
         private  HttpClient httpClient;
         
        

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http;
+using Microsoft.Extensions.FileProviders.Physical;
 using Microsoft.Extensions.Primitives;
 using WebHostXam.Managers;
 using WebHostXam.Models;
@@ -55,30 +56,16 @@ namespace WebHostXam.KestrelWebHost
             var page = httpContext.Request.Path.ToString();
             try
             {
-                if (page.Contains("/files"))  
+                if (page.Contains("/files"))
                 {
-                    var contentType = Instance.GetContentType($".{page.Split('.')[1]}");
+                    var fileExtension = $".{page.Split('.')[1]}";
+                    var fileName = page.Split('/')[2];
+                    var contentType = Instance.GetContentType(fileExtension);
                     response.ContentType = contentType;
                     
-                    //
-                    // var mediaStream = Instance.GetMedia(page.Split('/')[2], contentType);
-                    // Byte[] bytes = new Byte[0];
-                    // using (MemoryStream ms = new MemoryStream())
-                    // {
-                    //     mediaStream.FileStream.CopyTo(ms);
-                    //     bytes = ms.ToArray();
-                    // }
-                    var bytes = Instance.GetMedia2(page.Split('/')[2], contentType);
-                    //var x = Instance.GetMedia3(page.Split('/')[2], contentType);
-                    response.Headers.ContentLength = bytes.Length;
-
-                    //var x = response.Headers["application/octet-stream"];
-                    
-                    response.Headers.Add("content-disposition", "attachment;filename=pik.jpg");
-                    //response.Headers.Add("Content-Length", bytes.Length.ToString());
-                    
-                    await response.Body.WriteAsync(bytes, 0, bytes.Length);
-                       return;
+                     await response.SendFileAsync(new PhysicalDirectoryInfo(new DirectoryInfo($"/storage/emulated/0/Download/{fileName}")));
+                     return;
+                       
 
                 }
                 else

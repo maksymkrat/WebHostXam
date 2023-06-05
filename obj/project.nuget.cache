@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "2eZZ/V81Vp8AZWfrIY3WOZFkxw+q8iqOoQNu1TQzYdvuS42mO7Bris15R1qPS4Wud643BIbVwr0x1g681f2Q8A==",
+  "dgSpecHash": "zChVD34ARHRRZ5owKXjvw0MIgIFZ3nKjP1IEoeeE7dLrn2Qs3YNPgF1veSf5tyEj7KD9HcPT33/S13eJwXf2jw==",
   "success": true,
   "projectFilePath": "D:\\AndroidProjects\\WebHostXam\\WebHostXam.Android.csproj",
   "expectedPackageFiles": [
@@ -254,7 +254,7 @@
       "code": "NU1605",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "Detected package downgrade: Microsoft.Extensions.Primitives from 5.0.1 to 2.2.0. Reference the package directly from the project to select a different version. \r\n WebHostXam.Android -> WebHostXam -> Microsoft.Extensions.Primitives (>= 5.0.1) \r\n WebHostXam.Android -> Microsoft.Extensions.Primitives (>= 2.2.0)",
+      "message": "Detected package downgrade: Microsoft.Extensions.Primitives from 7.0.0 to 2.2.0. Reference the package directly from the project to select a different version. \r\n WebHostXam.Android -> WebHostXam -> Microsoft.Extensions.Primitives (>= 7.0.0) \r\n WebHostXam.Android -> Microsoft.Extensions.Primitives (>= 2.2.0)",
       "libraryId": "Microsoft.Extensions.Primitives",
       "targetGraphs": [
         "MonoAndroid,Version=v10.0"
